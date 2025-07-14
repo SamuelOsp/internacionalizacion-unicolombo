@@ -11,43 +11,54 @@
 
         <script>
             document.addEventListener("DOMContentLoaded", () => {
-                const tabs = document.querySelectorAll(".modulo-tabs .tab");
-                const contents = document.querySelectorAll(".tab-content");
+            const tabs = document.querySelectorAll(".modulo-tabs .tab");
+            const contents = document.querySelectorAll(".tab-content");
 
-                tabs.forEach((tab, index) => {
-                    tab.addEventListener("click", () => {
-                        // Desactivar pestañas y contenidos
-                        tabs.forEach(t => t.classList.remove("active"));
-                        contents.forEach(c => c.classList.remove("active"));
+            tabs.forEach((tab, index) => {
+                tab.addEventListener("click", () => {
+                    tabs.forEach(t => t.classList.remove("active"));
+                    contents.forEach(c => c.classList.remove("active"));
 
-                        // Activar pestaña y contenido seleccionado
-                        tab.classList.add("active");
-                        contents[index].classList.add("active");
-                    });
+                    tab.classList.add("active");
+                    contents[index].classList.add("active");
                 });
             });
 
-            document.addEventListener("DOMContentLoaded", () => {
-                const form1 = document.getElementById("form-step-1");
-                const form2 = document.getElementById("form-step-2");
-                const nextBtn = form1.querySelector(".next-step");
-                const prevBtn = form2.querySelector(".prev-step");
-                const steps = document.querySelectorAll(".progress-steps .step");
+            const tabSections = document.querySelectorAll('.tab-content');
 
-                nextBtn.addEventListener("click", () => {
-                    form1.classList.add("hidden");
-                    form2.classList.remove("hidden");
-                    steps[0].classList.remove("active");
-                    steps[1].classList.add("active");
-                });
+            tabSections.forEach(tabSection => {
+                const forms = Array.from(tabSection.querySelectorAll('form.wizard-form'));
+                const steps = Array.from(tabSection.querySelectorAll('.progress-steps .step'));
 
-                prevBtn.addEventListener("click", () => {
-                    form2.classList.add("hidden");
-                    form1.classList.remove("hidden");
-                    steps[1].classList.remove("active");
-                    steps[0].classList.add("active");
+                forms.forEach((form, index) => {
+                    const nextBtn = form.querySelector('.next-step');
+                    if (nextBtn && index < forms.length - 1) {
+                        nextBtn.addEventListener("click", () => {
+                            form.classList.add('hidden');
+                            forms[index + 1].classList.remove('hidden');
+
+                            if (steps.length > 0 && steps[index + 1]) {
+                                steps[index].classList.remove('active');
+                                steps[index + 1].classList.add('active');
+                            }
+                        });
+                    }
+
+                    const prevBtn = form.querySelector('.prev-step');
+                    if (prevBtn && index > 0) {
+                        prevBtn.addEventListener("click", () => {
+                            form.classList.add('hidden');
+                            forms[index - 1].classList.remove('hidden');
+
+                            if (steps.length > 0 && steps[index - 1]) {
+                                steps[index].classList.remove('active');
+                                steps[index - 1].classList.add('active');
+                            }
+                        });
+                    }
                 });
             });
+        });9
         </script>
 
 
@@ -138,8 +149,8 @@
                         <button class="tab">Documentación</button>
                         <button class="tab">Reporte de Experiencia</button>
                         <button class="tab">Movilidad Entrante</button>
-                        <button class="tab">Exportar Datos</button>
-                    </nav>
+                        <button class="tab">Movilidad Entrante Docente y Administrativo</button>
+                    </nav>  
 
                     <!-- 3. Contenido centrado -->
                     <!-- Contenedores de cada pestaña -->
@@ -237,7 +248,151 @@
                         </div>
 
                         <div class="tab-content" data-tab="6">
-                            <p>Exportar datos a PDF/Excel.</p>
+                            
+                            <!-- Barra de progreso -->
+                            <div class="progress-steps">
+                                <div class="step-6 active-6">
+                                    <div class="circle-6">1</div>
+                                    <span>Datos Personales</span>
+                                </div>
+                                <div class="step-6">
+                                    <div class="circle-6">2</div>
+                                    <span>Datos de la movilidad académica</span>
+                                </div>
+                            </div>
+
+                            <!-- FORMULARIO PASO 1 -->
+                             <form class="modulo-form wizard-form" id="form-step-1">
+                                <div class="form-group">
+                                    <label for="nombre">Nombre:</label>
+                                    <input type="text" id="nombre" name="nombre" required />
+                                </div>
+                                <div class="form-group">
+                                    <label for="Apellido">Apellidos:</label>
+                                    <input type="text" id="Apellido" name="Apellido" required />
+                                </div>
+                                <div class="form-group">
+                                    <label for="correo">Tipo de documento de identidad</label>
+                                    <select class="tipoidentidad">
+                                        <option value="cc" selected>C.C</option>
+                                        <option value="ce">C.E</option>
+                                        <option value="pasaporte">Pasaporte</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="numerodocumento">Numero de documento:</label>
+                                    <input type="text" id="numeroidentidad" required />
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="sexo">Sexo:</label>
+                                    <select class="sexo">
+                                        <option value="masculino">Masculino</option>
+                                        <option value="femenino"> Femenino</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="lugarnacimiento">Lugar de nacimiento</label>
+                                    <input type="text" id="lugarnacimiento" required />
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="paisnacimiento">País de nacimiento</label>
+                                    <input type="text" id="paisnacimiento" required />
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="celular"> Celular:</label>
+                                    <input type="tel" id="telefono" required />
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="email">E-mail:</label>
+                                    <input type="email" id="email" name="email" />
+                                </div>
+
+                                <div class="wizard-actions">
+                                    <div></div> <!-- espacio a la izquierda -->
+                                    <button type="button" class="next-step">
+                                        Siguiente <i class="fas fa-arrow-right"></i>
+                                    </button>
+                                </div>
+                            </form>
+
+                            <!-- FORMULARIO PASO 2 -->
+                            <form class="modulo-form wizard-form hidden" id="form-step-2">
+                                <div class="form-group">
+                                    <label for="instituciónorigen">Institución de origen: </label>
+                                    <input type="text" id="institucion" name="institucion" required/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="paisorigen">País de origen: </label>
+                                    <input type="text" id="paisorigen" name="paisorigen" required/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="tipovinculacion">Tipo de vinculación institución de origen: </label>
+                                    <select class="tipovinculacion">
+                                        <option value="docente" selected>Docente</option>
+                                        <option value="administrativo">Administrativo</option>
+                                        <option value="investigador">Investigador</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="cargo">Cargo</label>
+                                    <input type="text" id="cargo" name="cargo" required/>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="tipomovilidad">Tipo de movilidad académica:</label>
+                                    <input type="text" id="tipomovilidad" name="tipomovilidad" required/>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="revisioncooperacion">Revisión Cooperación Académica</label>
+                                    <select class="revisioncooperacion">
+                                        <option value="estancia" selected>Estancia de Investigación </option>
+                                        <option value="conferencista">Conferencista Invitado</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="descripcionmovilidad">Descripción de la movilidad académica:</label>
+                                    <input type="text" id="descripcionmovilidad" name="descripcionmovilidad" required/>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="fechasestancia">Fechas de estancia en Unicolombo</label>
+                                    <input type="text" id="fechasestancia" name="fechasestancia" required/>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="titulocharla"> En caso de realizar una charla, indicar el titulo de esta: </label>
+                                    <input type="text" id="titulocharla" name="titulocharla" required/>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="programaacademico">Programa Académico(s) que recibirán la actividad: </label>
+                                    <input type="text" id="programaacademico" name="programaacademico" required/>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="firma"> Firma: </label>
+                                    <input type="file" id="firma" name="firma" required/>
+                                </div>
+                                <div class="wizard-actions">
+                                    <button type="button" class="prev-step">
+                                        <i class="fas fa-arrow-left"></i> Anterior
+                                    </button>
+                                    <button type="submit" class="submit-btn">
+                                        <i class="fas fa-save"></i> Guardar
+                                    </button>
+                                </div>
+
+                            </form>
+
+
+
                         </div>
 
                     </section>
