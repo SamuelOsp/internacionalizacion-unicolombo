@@ -375,3 +375,58 @@ button[type="submit"]:hover {
 .submit-btn:hover {
     background-color: #a70e25;
 }
+
+#tablita {
+    display: flex;
+    flex-direction: column;
+    border: #999 solid 1px;
+    padding: 10px;
+    border-radius: 10px;
+    grid-column: span 2;
+}
+
+#cabecera-tabla {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+#columna-tabla {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+#fila-tabla {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.boton-tabla {
+    background-color: #ccc;
+    color: #003865;
+    border: none;
+    padding: 0.5rem 1.2rem;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.boton-tabla:hover {
+    background-color: #bbb;
+}
+
+#data-tabla {
+    gap: 12px;
+    overflow-y: auto;
+}
+
+.botones-tabla {
+    margin-top: 15px;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
