@@ -85,7 +85,7 @@
                     select.innerHTML = '<option value="" disabled selected>Selecciona un país</option>';
                     countriesInSpanish.forEach(country => {
                         const option = document.createElement('option');
-                        option.value = country.cca2; // Código ISO que la API de GeoDB necesita
+                        option.value = country.cca2; // Código ISO que la API de GeoDB necesita.
                         option.textContent = country.translations.spa.common;
                         select.appendChild(option);
                     });
