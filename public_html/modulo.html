@@ -61,7 +61,25 @@
                     }
                 });
             });
-        }); 9
+        });
+
+        function insertarFila() {
+            const contenedor = document.getElementById('data-tabla');
+
+            const fila = document.createElement('div');
+            fila.id = 'fila-tabla';
+
+            ['codigo-anfi', 'nombre-anfi', 'codigo-orig', 'nombre-orig'].forEach(campo => {
+                const input = document.createElement('input');
+                input.type = campo === 'codigo-anfi' ? 'number' : campo === 'codigo-orig' ? 'number' : 'text';
+                input.name = `${campo}`;
+                input.id = `${campo}`;
+                input.required;
+                fila.appendChild(input);
+            });
+
+            contenedor.appendChild(fila);
+        }
     </script>
 
 
@@ -263,7 +281,6 @@
 
                         </form>
                     </div>
-
 
                     <div class="tab-content" data-tab="1">
                         <!--emanuel-->
@@ -882,12 +899,15 @@
 
                         <!--FORMULARIO PASO 1-->
                         <form class="modulo-form wizard-form" id="form-step-1">
+                            <div class="divisor">
+                                <hr>Datos de Identificación
+                            </div>
                             <div class="form-group">
-                                <label for="nombre">Nombres del Estudiante</label>
+                                <label for="nombre">Nombres</label>
                                 <input type="text" name="nombre" id="nombre" required>
                             </div>
                             <div class="form-group">
-                                <label for="apellido">Apellidos del Estudiante</label>
+                                <label for="apellido">Apellidos</label>
                                 <input type="text" name="apellido" id="apellido" required>
                             </div>
                             <div class="form-group">
@@ -906,7 +926,11 @@
                             </div>
                             <div class="form-group">
                                 <label for="sexo">Sexo</label>
-                                <input type="text" name="sexo" id="sexo" required>
+                                <select name="sexo" id="sexo" required>
+                                    <option value="" disabled selected>--Seleccione una opción--</option>
+                                    <option value="masculino">Masculino</option>
+                                    <option value="femenino">Femenino</option>
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label for="fecha-nacimiento">Fecha de Nacimiento</label>
@@ -919,6 +943,9 @@
                             <div class="form-group">
                                 <label for="pais-nacimiento">País de Nacimiento</label>
                                 <input type="text" name="pais-nacimiento" id="pais-nacimiento" required>
+                            </div>
+                            <div class="divisor">
+                                <hr>Datos de Salud
                             </div>
                             <div class="form-group">
                                 <label for="sanguineo">Grupo Sanguíneo</label>
@@ -941,6 +968,9 @@
                             <div class="form-group">
                                 <label for="eps">EPS</label>
                                 <input type="text" name="eps" id="eps" required>
+                            </div>
+                            <div class="divisor">
+                                <hr>Datos de Contacto
                             </div>
                             <div class="form-group">
                                 <label for="direccion">Dirección</label>
@@ -984,7 +1014,18 @@
                             </div>
                             <div class="form-group">
                                 <label for="semestre">Semestre</label>
-                                <input type="text" name="semestre" id="semestre" required>
+                                <select name="semestre" id="semestre" required>
+                                    <option value="" disabled selected>--Seleccione una opción--</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label for="programa">Promedio Acumulado</label>
@@ -1050,7 +1091,7 @@
                                 <label for="uni-origen">Universidad de Origen</label>
                                 <input type="text" name="uni-origen" id="uni-origen" required>
                             </div>
-                            <div class="form-group" id="tabla">
+                            <div class="form-group" id="tablita">
 
                                 <div id="cabecera-tabla">
                                     <label>Asignaturas en la Universidad Anfitriona</label>
