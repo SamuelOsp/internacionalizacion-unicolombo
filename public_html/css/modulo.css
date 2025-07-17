@@ -378,7 +378,7 @@ button[type="submit"]:hover {
 }
 
 #tablita {
-    display: none;
+    display: flex;
     flex-direction: column;
     border: #999 solid 1px;
     padding: 10px;
