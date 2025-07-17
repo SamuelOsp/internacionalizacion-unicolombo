@@ -1177,7 +1177,7 @@
                                 <label for="label">Resultado esperado:</label>
                                 <input type="text" class="input" id="resultado esperado" required>
                             </div>
-                            <div class="wizard-actions">
+                            <div class="wizard-actions" style="grid-column: span 2;">
                                 <button type="submit" class="submit-btn">
                                     <i class="fas fa-save"></i> Guardar
                                 </button>
@@ -1358,8 +1358,13 @@
                                 <label for="codigo-est">Código Estudiantil</label>
                                 <input type="text" name="codigo-est" id="codigo-est" required>
                             </div>
-                            <div class="form-group">
-
+                            <div class="form-group" id="bf-btn">
+                                <button>
+                                    <i class="fas fa-filter"></i>
+                                </button>
+                                <button>
+                                    <i class="fas fa-search"></i>
+                                </button>
                             </div>
                             <div class="form-group">
                                 <label for="programa">Programa Académico</label>
@@ -1496,10 +1501,9 @@
                         <!--FORMULARIO PASO 4-->
                         <form class="modulo-form wizard-form hidden" id="form-step-4"
                             style="grid-template-columns: 1fr;">
-                            <div class="form-group">
-                                <button title="Requisitos para la Movilidad Académica" class="modalc-btn"
-                                    id="abrirmodalc">
-                                    <i class="fas fa-info-circle"></i>
+                            <div class="form-group" style="align-items: self-end;">
+                                <button title="Requisitos para la Movilidad Académica" class="modalc-btn" id="abrirmodalc">
+                                    <i class="fas fa-info-circle fa-2x" style="color: black;"></i>
                                 </button>
                             </div>
                             <div class="modalc" id="modalc">
@@ -1514,13 +1518,11 @@
                                     <p>-Tener un promedio acumulado de 3.5 o superior.</p>
                                     <p>-Asumir los costos de desplazamiento y sostenimiento durante su estancia en la
                                         universidad anfitriona.</p>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <p><strong>ANEXAR AL FORMULARIO: </strong> Fotocopia del documento de identificación,
+                                    <p><strong>ANEXAR AL FORMULARIO: </strong> Fotocopia del documento de identificación,
                                     certificado de estado ACTIVO de EPS o seguro médico internacional, formato
                                     compromiso
                                     de estudiantes y padres de familia para movilidad académica.</p>
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label for="fotocopia">Fotocopia del documento de identidad</label>
@@ -1691,11 +1693,11 @@
                                 <label for="instituciónorigen">Institución de origen: </label>
                                 <div class="input-buscar-institucion"
                                     style="display: flex; gap: 0.5rem; align-items: center; width: 100%;">
-                                    <input type="text" id="institucion" style="width: 90%;" name="institucion"
+                                    <input type="text" id="institucion-origen" style="width:90%;" name="institucion"
                                         required />
                                     <button type="button" id="btn-buscar-institucion-origen" title="Buscar institución"
-                                        style="padding: 0.25rem 0.75rem; cursor: pointer;">
-
+                                        style="padding:0.5rem;background-color:#0b4e8b;color:#fff;border:none;border-radius:6px;cursor:pointer;">
+                                        <i class="fas fa-search"></i>
                                     </button>
                                 </div>
                             </div>
@@ -2027,13 +2029,58 @@
 
     </div>
 
-
     <script>
-        const INSTITUCIONES_ORIGEN_DATA = [
-            { id: "UCO", nombre: "Unicolombo", pais: "Colombia", tipovinculacion: "docente", cargo: "Profesor visitante" },
-            { id: "UNIANDES", nombre: "Universidad de los Andes", pais: "Colombia", tipovinculacion: "investigador", cargo: "Investigador invitado" },
-            { id: "UNAM", nombre: "Universidad Nacional Autónoma de México", pais: "México", tipovinculacion: "docente", cargo: "Catedrático" }
-        ];
+        document.addEventListener("DOMContentLoaded", () => {
+
+            const instituciones = [
+                {
+                    nombre: "Universidad Nacional",
+                    pais: "Colombia",
+                    cargo: "Docente",
+                    programaacademico: "Ingeniería de Sistemas"
+                },
+                {
+                    nombre: "Universidad de Buenos Aires",
+                    pais: "Argentina",
+                    cargo: "Investigador",
+                    programaacademico: "Ciencias Sociales"
+                }
+            ];
+
+            const btnBuscar = document.getElementById("btn-buscar-institucion-origen");
+            if (!btnBuscar) return;
+
+            btnBuscar.addEventListener("click", () => {
+
+                const form = btnBuscar.closest("form");
+                if (!form) return;
+
+                const inputInstitucion = form.querySelector("#institucion-origen");
+                const inputPais = form.querySelector("#paisorigen");
+                const inputCargo = form.querySelector("#cargo");
+                const inputPrograma = form.querySelector("#programaacademico");
+
+                const valor = (inputInstitucion?.value || "").trim().toLowerCase();
+
+                if (!valor) {
+                    alert("Por favor ingresa el nombre de la institución.");
+                    return;
+                }
+
+
+                const resultado = instituciones.find(item =>
+                    item.nombre.toLowerCase().includes(valor)
+                );
+
+                if (resultado) {
+                    if (inputPais) inputPais.value = resultado.pais;
+                    if (inputCargo) inputCargo.value = resultado.cargo;
+                    if (inputPrograma) inputPrograma.value = resultado.programaacademico;
+                } else {
+                    alert("Institución no encontrada.");
+                }
+            });
+        });
     </script>
 
 

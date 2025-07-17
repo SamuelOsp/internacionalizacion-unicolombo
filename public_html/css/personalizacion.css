@@ -1,34 +1,65 @@
-
-
-
-
-/* Botón cuadrado tipo bloque */
-
-
-
-
-
-
-/*ESTILOS BARRAS DE TAREAS*/
-
-
-
-
-/*ESTILOS DE FORMULARIOS PROGRESIVOS*/
-/* Ocultar formularios por defecto */
-
-
-/* Estilo pasos formulario */
-
-
-
-
-/*ESTILOS bones siguiente - atras*/
-
-/* Contenedor botones del paso 2 */
+.wizard-actions {
+    display: flex;
+    align-items: center;
+    grid-column: span 3;
+    margin-top: 1.5rem;
+}
 
 /* Botón Siguiente */
+.next-step {
+    margin-left: auto;
+    background-color: #003865;
+    color: white;
+    border: none;
+    padding: 0.5rem 1.2rem;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Montserrat', sans-serif;
+}
 
+.next-step:hover {
+    background-color: #002B4C;
+    transform: scale(1.05);
+}
+
+/* Botón Anterior */
+.prev-step {
+    background-color: #ccc;
+    color: #003865;
+    border: none;
+    padding: 0.5rem 1.2rem;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.prev-step:hover {
+    background-color: #bbb;
+    transform: scale(1.05);
+}
+
+/* Botón Guardar más angosto y centrado */
+.submit-btn {
+    margin-left: auto;
+    background-color: #C8102E;
+    color: white;
+    border: none;
+    padding: 0.5rem 1.5rem;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.submit-btn:hover {
+    background-color: #a70e25;
+    transform: scale(1.05);
+}
 
 .divisor{
     margin-top: 0;
