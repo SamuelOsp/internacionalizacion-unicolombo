@@ -127,7 +127,7 @@
                     select.innerHTML = '<option value="" disabled selected>Selecciona un país</option>';
                     countriesInSpanish.forEach(country => {
                         const option = document.createElement('option');
-                        option.value = country.cca2; // Código ISO que la API de GeoDB necesita
+                        option.value = country.cca2; // Código ISO que la API de GeoDB necesita.
                         option.textContent = country.translations.spa.common;
                         select.appendChild(option);
                     });
@@ -274,7 +274,7 @@
                     <button class="tab">Movilidad Entrante Estudiante</button>
                     <button class="tab">Movilidad Saliente Docente Administrativos</button>
                     <button class="tab">Movilidad estudiantil corta estancia</button>
-                    <button class="tab">Reporte de Experiencia</button>
+                    <button class="tab">Movilidad de corta instancia</button>
                     <button class="tab">Movilidad Saliente Estudiantil</button>
                     <button class="tab">Movilidad Entrante Docente y Administrativo</button>
                     <button class="tab">Registro Convenio</button>
@@ -1069,8 +1069,104 @@
                     </div>
 
                     <div class="tab-content" data-tab="4">
-                        <p>Reporte de experiencia del estudiante.</p>
+                        <div class="progress-steps">
+                            <div class="step active">
+                                <div class="circle">1</div>
+                                <span>Datos Personales</span>
+                            </div>
+
+                        </div>
+                        <form class="modulo-form wizard-form" id="form-step-1"
+                        style="display: grid; grid-template-columns: 1fr 1fr;">
+                            <div class="form-group">
+                                <label form="label">Fecha de solicitud:</label>
+                                <input type="date" id="fecha" name="fecha" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="label">Nombre de movilidad:</label>
+                                <input type="text" class="input" id=" nombre de movilidad"required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="label">Lugar de destino:</label>
+                                <input type="text" class="input" id="lugar de destino"required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="label">Coordinacion general de la movilidad:</label>
+                                <input type="text" class="input" id="cordinacion de movilidad"required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="label">Programa academico/Area:</label>
+                                <input type="text" class="input" id="programa academico"required>
+                            </div>
+
+                            <div class="form-group fechas-group">
+                                <label for="fecha_inicio">Fecha de inicio/Finalización:</label>
+                                <div class="fechas-flex">
+                                    <input type="date" id="fecha_inicio" name="fecha_inicio" required>
+                                    <input type="date" id="fecha_final" name="fecha_final" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="label">Numero estudiantes/Docentes beneficiados:</label>
+                                <input type="text" class="input" id="numero estudiantes-docentes"required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="label">Semestre:</label>
+                                <input type="text" class="input" id="semestre"required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="label">Requisitos para estudiantes:</label>
+                                <input type="text" class="input" id="requisito estudiante"required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="label">Condiciones participacion docente:</label>
+                                <input type="text" class="input" id="condiciones docente"required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="label">Proposito de movilidad e impacto estudiantes:</label>
+                                <input type="text" class="input" id="proposito de movilidad"required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="label">Resultado esperado:</label>
+                                <input type="text" class="input" id="resultado esperado"required>
+                            </div>
+                            <div class="wizard-actions">
+                                <button type="submit" class="submit-btn">
+                                    <i class="fas fa-save"></i> Guardar
+                                </button>
+                            </div>
+
                     </div>
+                    </form>
+                    <script>
+                        // Espera a que cargue todo el contenido HTML
+                        document.addEventListener("DOMContentLoaded", function () {
+                            const fechaInicio = document.getElementById("fecha_inicio");
+                            const fechaFinal = document.getElementById("fecha_final");
+
+                            // Cuando cambie la fecha de inicio
+                            fechaInicio.addEventListener("change", function () {
+                                // Ajusta la fecha mínima del campo de finalización
+                                fechaFinal.min = fechaInicio.value;
+
+                                // Si ya había una fecha final seleccionada que ahora no es válida
+                                if (fechaFinal.value && fechaFinal.value < fechaInicio.value) {
+                                    fechaFinal.value = ""; // Limpiamos el campo final
+                                    alert("La fecha de finalización no puede ser menor que la fecha de inicio.");
+                                }
+                            });
+                        });
+                    </script>
 
                     <div class="tab-content" data-tab="5">
                         <!--cristian-->

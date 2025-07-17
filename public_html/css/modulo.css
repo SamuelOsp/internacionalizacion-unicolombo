@@ -69,7 +69,7 @@
 
 .modulo-form {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns:  repeat(3,1fr);
     gap: 1rem;
     max-width: 800px;
     width: 100%;
@@ -81,9 +81,10 @@
 
 .form-group {
     display: flex;
-    flex-direction: column;
+        flex-direction: column;
+    grid-template-columns: repeat(3, 1fr); /* 3 columnas iguales */
+    gap: 10px; /* Espacio entre columnas */
 }
-
 .form-group label {
     margin-bottom: 0.3rem;
     font-weight: 600;
@@ -295,7 +296,7 @@ button[type="submit"]:hover {
 /* Contenedor botones del paso 2 */
 .wizard-actions {
     display: flex;
-    justify-content: space-between;
+    justify-content: center; 
     align-items: center;
     grid-column: span 2;
     margin-top: 1.5rem;
@@ -493,3 +494,13 @@ input[type=number]::-webkit-outer-spin-button {
     padding-top: 25px;
     gap: 15px;
 }
+
+
+.fechas-flex {
+    display: flex;
+    gap: 10px;
+}
+
+.fechas-flex input[type="date"] {
+    flex: 1;}
+
