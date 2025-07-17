@@ -1977,10 +1977,10 @@
         </footer>
 
     </div>
-    
+
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-            // Datos simulados en memoria. Cámbialos o usa fetch() si tienes archivo.
+
             const instituciones = [
                 {
                     nombre: "Universidad Nacional",
@@ -1997,11 +1997,11 @@
             ];
 
             const btnBuscar = document.getElementById("btn-buscar-institucion-origen");
-            if (!btnBuscar) return; // seguridad
+            if (!btnBuscar) return;
 
             btnBuscar.addEventListener("click", () => {
-                // Limitamos la búsqueda al formulario donde está el botón
-                const form = btnBuscar.closest("form"); // tab 6, paso 2
+
+                const form = btnBuscar.closest("form");
                 if (!form) return;
 
                 const inputInstitucion = form.querySelector("#institucion-origen");
@@ -2016,7 +2016,7 @@
                     return;
                 }
 
-                // Coincidencia parcial
+
                 const resultado = instituciones.find(item =>
                     item.nombre.toLowerCase().includes(valor)
                 );
