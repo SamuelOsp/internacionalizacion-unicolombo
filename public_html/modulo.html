@@ -61,6 +61,28 @@
                     }
                 });
             });
+
+            // Obtener elementos
+            const modal = document.getElementById("modalc");
+            const btnAbrir = document.getElementById("abrirmodalc");
+            const spanCerrar = document.querySelector(".modalc-cerrar");
+
+            // Mostrar el modal
+            btnAbrir.onclick = () => {
+                modal.style.display = "block";
+            };
+
+            // Cerrar el modal al hacer clic en la X
+            spanCerrar.onclick = () => {
+                modal.style.display = "none";
+            };
+
+            // Cerrar el modal al hacer clic fuera del contenido
+            window.onclick = (event) => {
+                if (event.target === modal) {
+                    modal.style.display = "none";
+                }
+            };
         });
 
         function insertarFila() {
@@ -1008,6 +1030,13 @@
 
                         <!--FORMULARIO PASO 2-->
                         <form class="modulo-form wizard-form hidden" id="form-step-2">
+                            <div class="form-group" style="grid-column: span 2;">
+                                <label for="codigo-est">Código Estudiantil</label>
+                                <input type="text" name="codigo-est" id="codigo-est" required>
+                            </div>
+                            <div class="form-group">
+
+                            </div>
                             <div class="form-group">
                                 <label for="programa">Programa Académico</label>
                                 <input type="text" name="programa" id="programa" required>
@@ -1016,24 +1045,21 @@
                                 <label for="semestre">Semestre</label>
                                 <select name="semestre" id="semestre" required>
                                     <option value="" disabled selected>--Seleccione una opción--</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                    <option value="7">7</option>
-                                    <option value="8">8</option>
-                                    <option value="9">9</option>
+                                    <option value="1">1°</option>
+                                    <option value="2">2°</option>
+                                    <option value="3">3°</option>
+                                    <option value="4">4°</option>
+                                    <option value="5">5°</option>
+                                    <option value="6">6°</option>
+                                    <option value="7">7°</option>
+                                    <option value="8">8°</option>
+                                    <option value="9">9°</option>
+                                    <option value="10">10°</option>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="programa">Promedio Acumulado</label>
                                 <input type="number" name="programa" id="programa" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="codigo-est">Código Estudiantil</label>
-                                <input type="text" name="codigo-est" id="codigo-est" required>
                             </div>
                             <div class="form-group">
                                 <label for="idiomas">Idiomas que Maneja</label>
@@ -1070,14 +1096,6 @@
                                 <textarea name="motivacion" id="motivacion" rows="5" cols="40"></textarea>
                             </div>
                             <div class="form-group">
-                                <label for="uni-origen">Universidad de Origen</label>
-                                <input type="text" name="uni-origen" id="uni-origen" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="sede">Sede</label>
-                                <input type="text" name="sede" id="sede" required>
-                            </div>
-                            <div class="form-group">
                                 <label for="tmovilidad">Tipo de Movilidad</label>
                                 <select name="factor-rh" id="factor-rh" required>
                                     <option value="" disabled selected>--Seleccione una opción--</option>
@@ -1090,6 +1108,14 @@
                             <div class="form-group">
                                 <label for="uni-origen">Universidad de Origen</label>
                                 <input type="text" name="uni-origen" id="uni-origen" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="sede">Sede</label>
+                                <input type="text" name="sede" id="sede" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="program">Programa</label>
+                                <input type="text" name="program" id="program" required>
                             </div>
                             <div class="form-group" id="tablita">
 
@@ -1146,24 +1172,24 @@
                         <!--FORMULARIO PASO 4-->
                         <form class="modulo-form wizard-form hidden" id="form-step-4"
                             style="grid-template-columns: 1fr;">
-                            <div class="form-group requisito">
-                                <input type="checkbox" name="matricula-r" id="matricula-r" required>
-                                <p>Estar matriculado en un programa de pregrado de Unicolombo y ser estudiante acitvo.
-                                </p>
+                            <div class="form-group">
+                                <button title="Requisitos para la Movilidad Académica" class="modalc-btn" id="abrirmodalc">
+                                    <i class="fas fa-info-circle"></i>
+                                </button>
                             </div>
-                            <div class="form-group requisito">
-                                <input type="checkbox" name="creditos-r" id="creditos-r" required>
-                                <p>Haber realizado como mínimo el 40% de los créditos y no estar bajo sanción
-                                    disciplinaria.</p>
-                            </div>
-                            <div class="form-group requisito">
-                                <input type="checkbox" name="matricula-r" id="matricula-r" required>
-                                <p>Tener un promedio acumulado de 3.5 o superior.</p>
-                            </div>
-                            <div class="form-group requisito">
-                                <input type="checkbox" name="matricula-r" id="matricula-r" required>
-                                <p>Asumir los costos de desplazamiento y sostenimiento durante su estancia en la
-                                    universidad anfitriona.</p>
+                            <div class="modalc" id="modalc">
+                                <div class="modalc-contenido">
+                                    <span class="modalc-cerrar">&times;</span>
+                                    <h4>Requisitos para la Movilidad Académica</h4>
+                                    <p>-Estar matriculado en un programa de pregrado de Unicolombo y ser estudiante
+                                        acitvo.
+                                    </p>
+                                    <p>-Haber realizado como mínimo el 40% de los créditos y no estar bajo sanción
+                                        disciplinaria.</p>
+                                    <p>-Tener un promedio acumulado de 3.5 o superior.</p>
+                                    <p>-Asumir los costos de desplazamiento y sostenimiento durante su estancia en la
+                                        universidad anfitriona.</p>
+                                </div>
                             </div>
                             <div class="form-group">
                                 <p><strong>ANEXAR AL FORMULARIO: </strong> Fotocopia del documento de identificación,
@@ -1183,10 +1209,10 @@
                                 <label for="formato">Formato de Compromiso de Movilidad</label>
                                 <input type="file" name="formato" id="formato" required>
                             </div>
-                            <div class="form-group requisito">
+                            <div class="form-group requisito" id="cumplimiento-requisito">
                                 <input type="checkbox" name="cumplimiento" id="cumplimiento" required>
-                                <p>EL PARTICIPANTE CERTIFICA QUE CONOCE Y CUMPLE LOS REQUISITOS DEL CONVENIO
-                                    Y QUE SE CIÑE AL REGLAMENTO DE LA UNIVERSIDAD ANFITRIONA Y DE UNICOLOMBO.</p>
+                                <p>El participante certifica que conoce y cumple los requisitos del convenio
+                                    y que se ciñe al reglamento de la universidad anfitriona y de unicolombo.</p>
                             </div>
                             <div class="form-group">
                                 <label for="firma-participante">Firma del Participante</label>
