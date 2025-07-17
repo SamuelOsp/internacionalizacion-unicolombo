@@ -1,4 +1,4 @@
-function insertarFila() {
+function insertarFilaY() {
     const formulario = document.querySelector("form.tabla-movilidad");
     const tabla = formulario.querySelector(".tabla");
 
