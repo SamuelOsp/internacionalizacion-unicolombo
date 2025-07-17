@@ -474,6 +474,15 @@ input[type=number]::-webkit-outer-spin-button {
   cursor: pointer;
 }
 
+.modale-cerrar {
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
 .modalc-btn {
     display: flex;
     width: 5px;

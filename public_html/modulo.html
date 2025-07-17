@@ -66,8 +66,11 @@
 
             // Obtener elementos
             const modal = document.getElementById("modalc");
+            const modale = document.getElementById("modale");
             const btnAbrir = document.getElementById("abrirmodalc");
+            const btnAbrire = document.getElementById("abrirmodale");
             const spanCerrar = document.querySelector(".modalc-cerrar");
+            const spanCerrare = document.querySelector(".modale-cerrar");
             
             // Mostrar el modal
             btnAbrir.onclick = () => {
@@ -75,11 +78,20 @@
                 modal.style.display = "block";
             };
 
+            btnAbrire.onclick = () => {
+                 event.preventDefault();
+                modale.style.display = "block";
+            };
+
            
 
             // Cerrar el modal al hacer clic en la X
             spanCerrar.onclick = () => {
                 modal.style.display = "none";
+            };
+
+            spanCerrare.onclick = () => {
+                modale.style.display = "none";
             };
 
             // Cerrar el modal al hacer clic fuera del contenido
@@ -714,13 +726,13 @@
                             
                             <div class="form-group">
                                 <button title="Requisitos para la Movilidad Académica" class="modalc-btn"
-                                    id="abrirmodalc">
+                                    id="abrirmodale">
                                     <i class="fas fa-info-circle"></i>
                                 </button>
                             </div>
-                            <div class="modalc" id="modalc">
+                            <div class="modalc" id="modale">
                                 <div class="modalc-contenido">
-                                    <span class="modalc-cerrar">&times;</span>
+                                    <span class="modale-cerrar">&times;</span>
                                     <h4>Requisitos para la Movilidad Académica</h4>
                                     <p>-Estar matriculado en un programa de pregrado de Unicolombo y ser estudiante
                                         acitvo.
