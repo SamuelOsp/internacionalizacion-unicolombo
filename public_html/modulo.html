@@ -54,16 +54,56 @@
                                 form.classList.add('hidden');
                                 forms[index - 1].classList.remove('hidden');
 
-                                if (steps.length > 0 && steps[index - 1]) {
-                                    steps[index].classList.remove('active');
-                                    steps[index - 1].classList.add('active');
-                                }
-                            });
-                        }
-                    });
+                            if (steps.length > 0 && steps[index - 1]) {
+                                steps[index].classList.remove('active');
+                                steps[index - 1].classList.add('active');
+                            }
+                        });
+                    }
                 });
             });
-        </script>
+
+            // Obtener elementos
+            const modal = document.getElementById("modalc");
+            const btnAbrir = document.getElementById("abrirmodalc");
+            const spanCerrar = document.querySelector(".modalc-cerrar");
+
+            // Mostrar el modal
+            btnAbrir.onclick = () => {
+                modal.style.display = "block";
+            };
+
+            // Cerrar el modal al hacer clic en la X
+            spanCerrar.onclick = () => {
+                modal.style.display = "none";
+            };
+
+            // Cerrar el modal al hacer clic fuera del contenido
+            window.onclick = (event) => {
+                if (event.target === modal) {
+                    modal.style.display = "none";
+                }
+            };
+        });
+
+        function insertarFila() {
+            const contenedor = document.getElementById('data-tabla');
+
+            const fila = document.createElement('div');
+            fila.id = 'fila-tabla';
+
+            ['codigo-anfi', 'nombre-anfi', 'codigo-orig', 'nombre-orig'].forEach(campo => {
+                const input = document.createElement('input');
+                input.type = campo === 'codigo-anfi' ? 'number' : campo === 'codigo-orig' ? 'number' : 'text';
+                input.name = `${campo}`;
+                input.id = `${campo}`;
+                input.required;
+                fila.appendChild(input);
+            });
+
+            contenedor.appendChild(fila);
+        }
+    </script>
 
 
         <script>
@@ -308,9 +348,8 @@
                                     </button>
                                 </div>
 
-                            </form>
-                        </div>
-
+                        </form>
+                    </div>
 
                         <div class="tab-content" data-tab="1">
                             <!--emanuel-->
@@ -1053,92 +1092,105 @@
                                 </div>
                             </div>
 
-                            <!--FORMULARIO PASO 1-->
-                            <form class="modulo-form wizard-form" id="form-step-1">
-                                <div class="form-group">
-                                    <label for="nombre">Nombres del Estudiante</label>
-                                    <input type="text" name="nombre" id="nombre" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="apellido">Apellidos del Estudiante</label>
-                                    <input type="text" name="apellido" id="apellido" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="tipo-documento">Tipo de Documento</label>
-                                    <select name="sanguineo" id="sanguineo" required>
-                                        <option value="" disabled selected>--Seleccione una opción--</option>
-                                        <option value="cc">Cedula de ciudadania</option>
-                                        <option value="ce">Cedula de extranjeria</option>
-                                        <option value="ti">Tarjeta de identidad</option>
-                                        <option value="p">Pasaporte</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="no-documento">No. de Documento</label>
-                                    <input type="text" name="no-documento" id="no-documento" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="sexo">Sexo</label>
-                                    <input type="text" name="sexo" id="sexo" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="fecha-nacimiento">Fecha de Nacimiento</label>
-                                    <input type="date" name="fecha-nacimiento" id="fecha-nacimiento" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="lugar-nacimiento">Lugar de Nacimiento</label>
-                                    <input type="text" name="lugar-nacimiento" id="lugar-nacimiento" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="pais-nacimiento">País de Nacimiento</label>
-                                    <input type="text" name="pais-nacimiento" id="pais-nacimiento" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="sanguineo">Grupo Sanguíneo</label>
-                                    <select name="sanguineo" id="sanguineo" required>
-                                        <option value="" disabled selected>--Seleccione una opción--</option>
-                                        <option value="A">A</option>
-                                        <option value="B">B</option>
-                                        <option value="AB">AB</option>
-                                        <option value="O">O</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="factor-rh">Factor RH</label>
-                                    <select name="factor-rh" id="factor-rh" required>
-                                        <option value="" disabled selected>--Seleccione una opción--</option>
-                                        <option value="A">RH+</option>
-                                        <option value="B">RH-</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="eps">EPS</label>
-                                    <input type="text" name="eps" id="eps" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="direccion">Dirección</label>
-                                    <input type="text" name="direccion" id="direccion" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="ciudad">Ciudad/Municipio</label>
-                                    <input type="text" name="ciudad" id="ciudad" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="telefono">Teléfono</label>
-                                    <input type="tel" name="telefono" id="telefono" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="celular">Celular</label>
-                                    <input type="tel" name="celular" id="celular" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="email-inst">E-mail Institucional</label>
-                                    <input type="text" name="email-inst" id="email-inst" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="email-per">E-mail Personal</label>
-                                    <input type="text" name="email-per" id="email-per" required>
-                                </div>
+                        <!--FORMULARIO PASO 1-->
+                        <form class="modulo-form wizard-form" id="form-step-1">
+                            <div class="divisor">
+                                <hr>Datos de Identificación
+                            </div>
+                            <div class="form-group">
+                                <label for="nombre">Nombres</label>
+                                <input type="text" name="nombre" id="nombre" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="apellido">Apellidos</label>
+                                <input type="text" name="apellido" id="apellido" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="tipo-documento">Tipo de Documento</label>
+                                <select name="sanguineo" id="sanguineo" required>
+                                    <option value="" disabled selected>--Seleccione una opción--</option>
+                                    <option value="cc">Cedula de ciudadania</option>
+                                    <option value="ce">Cedula de extranjeria</option>
+                                    <option value="ti">Tarjeta de identidad</option>
+                                    <option value="p">Pasaporte</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="no-documento">No. de Documento</label>
+                                <input type="text" name="no-documento" id="no-documento" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="sexo">Sexo</label>
+                                <select name="sexo" id="sexo" required>
+                                    <option value="" disabled selected>--Seleccione una opción--</option>
+                                    <option value="masculino">Masculino</option>
+                                    <option value="femenino">Femenino</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="fecha-nacimiento">Fecha de Nacimiento</label>
+                                <input type="date" name="fecha-nacimiento" id="fecha-nacimiento" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="lugar-nacimiento">Lugar de Nacimiento</label>
+                                <input type="text" name="lugar-nacimiento" id="lugar-nacimiento" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="pais-nacimiento">País de Nacimiento</label>
+                                <input type="text" name="pais-nacimiento" id="pais-nacimiento" required>
+                            </div>
+                            <div class="divisor">
+                                <hr>Datos de Salud
+                            </div>
+                            <div class="form-group">
+                                <label for="sanguineo">Grupo Sanguíneo</label>
+                                <select name="sanguineo" id="sanguineo" required>
+                                    <option value="" disabled selected>--Seleccione una opción--</option>
+                                    <option value="A">A</option>
+                                    <option value="B">B</option>
+                                    <option value="AB">AB</option>
+                                    <option value="O">O</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="factor-rh">Factor RH</label>
+                                <select name="factor-rh" id="factor-rh" required>
+                                    <option value="" disabled selected>--Seleccione una opción--</option>
+                                    <option value="A">RH+</option>
+                                    <option value="B">RH-</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="eps">EPS</label>
+                                <input type="text" name="eps" id="eps" required>
+                            </div>
+                            <div class="divisor">
+                                <hr>Datos de Contacto
+                            </div>
+                            <div class="form-group">
+                                <label for="direccion">Dirección</label>
+                                <input type="text" name="direccion" id="direccion" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="ciudad">Ciudad/Municipio</label>
+                                <input type="text" name="ciudad" id="ciudad" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="telefono">Teléfono</label>
+                                <input type="tel" name="telefono" id="telefono" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="celular">Celular</label>
+                                <input type="tel" name="celular" id="celular" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email-inst">E-mail Institucional</label>
+                                <input type="text" name="email-inst" id="email-inst" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email-per">E-mail Personal</label>
+                                <input type="text" name="email-per" id="email-per" required>
+                            </div>
 
                                 <div class="wizard-actions">
                                     <div></div>
@@ -1149,40 +1201,55 @@
                                 </div>
                             </form>
 
-                            <!--FORMULARIO PASO 2-->
-                            <form class="modulo-form wizard-form hidden" id="form-step-2">
-                                <div class="form-group">
-                                    <label for="programa">Programa Académico</label>
-                                    <input type="text" name="programa" id="programa" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="semestre">Semestre</label>
-                                    <input type="text" name="semestre" id="semestre" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="programa">Promedio Acumulado</label>
-                                    <input type="number" name="programa" id="programa" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="codigo-est">Código Estudiantil</label>
-                                    <input type="text" name="codigo-est" id="codigo-est" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="idiomas">Idiomas que Maneja</label>
-                                    <input type="text" name="idiomas" id="idiomas" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="nivel-idioma">Nivel de Idioma</label>
-                                    <select name="nivel-idioma" id="nivel-idioma" required>
-                                        <option value="" disabled selected>--Seleccione una opción--</option>
-                                        <option value="A1">A1</option>
-                                        <option value="A2">A2</option>
-                                        <option value="B1">B1</option>
-                                        <option value="B2">B2</option>
-                                        <option value="C1">C1</option>
-                                        <option value="C2">C2</option>
-                                    </select>
-                                </div>
+                        <!--FORMULARIO PASO 2-->
+                        <form class="modulo-form wizard-form hidden" id="form-step-2">
+                            <div class="form-group" style="grid-column: span 2;">
+                                <label for="codigo-est">Código Estudiantil</label>
+                                <input type="text" name="codigo-est" id="codigo-est" required>
+                            </div>
+                            <div class="form-group">
+
+                            </div>
+                            <div class="form-group">
+                                <label for="programa">Programa Académico</label>
+                                <input type="text" name="programa" id="programa" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="semestre">Semestre</label>
+                                <select name="semestre" id="semestre" required>
+                                    <option value="" disabled selected>--Seleccione una opción--</option>
+                                    <option value="1">1°</option>
+                                    <option value="2">2°</option>
+                                    <option value="3">3°</option>
+                                    <option value="4">4°</option>
+                                    <option value="5">5°</option>
+                                    <option value="6">6°</option>
+                                    <option value="7">7°</option>
+                                    <option value="8">8°</option>
+                                    <option value="9">9°</option>
+                                    <option value="10">10°</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="programa">Promedio Acumulado</label>
+                                <input type="number" name="programa" id="programa" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="idiomas">Idiomas que Maneja</label>
+                                <input type="text" name="idiomas" id="idiomas" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="nivel-idioma">Nivel de Idioma</label>
+                                <select name="nivel-idioma" id="nivel-idioma" required>
+                                    <option value="" disabled selected>--Seleccione una opción--</option>
+                                    <option value="A1">A1</option>
+                                    <option value="A2">A2</option>
+                                    <option value="B1">B1</option>
+                                    <option value="B2">B2</option>
+                                    <option value="C1">C1</option>
+                                    <option value="C2">C2</option>
+                                </select>
+                            </div>
 
                                 <div class="wizard-actions">
                                     <button type="button" class="prev-step">
@@ -1194,36 +1261,36 @@
                                 </div>
                             </form>
 
-                            <!--FORMULARIO PASO 3-->
-                            <form class="modulo-form wizard-form hidden" id="form-step-3"
-                                  style="grid-template-columns: 1fr 1fr;">
-                                <div class="form-group" style="grid-column: span 2;">
-                                    <label for="motivacion">Motivación del Estudiante</label>
-                                    <textarea name="motivacion" id="motivacion" rows="5" cols="40"></textarea>
-                                </div>
-                                <div class="form-group">
-                                    <label for="uni-origen">Universidad de Origen</label>
-                                    <input type="text" name="uni-origen" id="uni-origen" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="sede">Sede</label>
-                                    <input type="text" name="sede" id="sede" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="tmovilidad">Tipo de Movilidad</label>
-                                    <select name="factor-rh" id="factor-rh" required>
-                                        <option value="" disabled selected>--Seleccione una opción--</option>
-                                        <option value="intercambio">Intercambio Académico</option>
-                                        <option value="pasantia">Pasantía de Investigación</option>
-                                        <option value="practica">Práctica Profesional</option>
-                                        <option value="voluntariado">Voluntariado</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="uni-origen">Universidad de Origen</label>
-                                    <input type="text" name="uni-origen" id="uni-origen" required>
-                                </div>
-                                <div class="form-group" id="tabla">
+                        <!--FORMULARIO PASO 3-->
+                        <form class="modulo-form wizard-form hidden" id="form-step-3"
+                            style="grid-template-columns: 1fr 1fr;">
+                            <div class="form-group" style="grid-column: span 2;">
+                                <label for="motivacion">Motivación del Estudiante</label>
+                                <textarea name="motivacion" id="motivacion" rows="5" cols="40"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="tmovilidad">Tipo de Movilidad</label>
+                                <select name="factor-rh" id="factor-rh" required>
+                                    <option value="" disabled selected>--Seleccione una opción--</option>
+                                    <option value="intercambio">Intercambio Académico</option>
+                                    <option value="pasantia">Pasantía de Investigación</option>
+                                    <option value="practica">Práctica Profesional</option>
+                                    <option value="voluntariado">Voluntariado</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="uni-origen">Universidad de Origen</label>
+                                <input type="text" name="uni-origen" id="uni-origen" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="sede">Sede</label>
+                                <input type="text" name="sede" id="sede" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="program">Programa</label>
+                                <input type="text" name="program" id="program" required>
+                            </div>
+                            <div class="form-group" id="tablita">
 
                                     <div id="cabecera-tabla">
                                         <label>Asignaturas en la Universidad Anfitriona</label>
@@ -1275,55 +1342,55 @@
                                 </div>
                             </form>
 
-                            <!--FORMULARIO PASO 4-->
-                            <form class="modulo-form wizard-form hidden" id="form-step-4"
-                                  style="grid-template-columns: 1fr;">
-                                <div class="form-group requisito">
-                                    <input type="checkbox" name="matricula-r" id="matricula-r" required>
-                                    <p>Estar matriculado en un programa de pregrado de Unicolombo y ser estudiante acitvo.
+                        <!--FORMULARIO PASO 4-->
+                        <form class="modulo-form wizard-form hidden" id="form-step-4"
+                            style="grid-template-columns: 1fr;">
+                            <div class="form-group">
+                                <button title="Requisitos para la Movilidad Académica" class="modalc-btn" id="abrirmodalc">
+                                    <i class="fas fa-info-circle"></i>
+                                </button>
+                            </div>
+                            <div class="modalc" id="modalc">
+                                <div class="modalc-contenido">
+                                    <span class="modalc-cerrar">&times;</span>
+                                    <h4>Requisitos para la Movilidad Académica</h4>
+                                    <p>-Estar matriculado en un programa de pregrado de Unicolombo y ser estudiante
+                                        acitvo.
                                     </p>
-                                </div>
-                                <div class="form-group requisito">
-                                    <input type="checkbox" name="creditos-r" id="creditos-r" required>
-                                    <p>Haber realizado como mínimo el 40% de los créditos y no estar bajo sanción
+                                    <p>-Haber realizado como mínimo el 40% de los créditos y no estar bajo sanción
                                         disciplinaria.</p>
-                                </div>
-                                <div class="form-group requisito">
-                                    <input type="checkbox" name="matricula-r" id="matricula-r" required>
-                                    <p>Tener un promedio acumulado de 3.5 o superior.</p>
-                                </div>
-                                <div class="form-group requisito">
-                                    <input type="checkbox" name="matricula-r" id="matricula-r" required>
-                                    <p>Asumir los costos de desplazamiento y sostenimiento durante su estancia en la
+                                    <p>-Tener un promedio acumulado de 3.5 o superior.</p>
+                                    <p>-Asumir los costos de desplazamiento y sostenimiento durante su estancia en la
                                         universidad anfitriona.</p>
                                 </div>
-                                <div class="form-group">
-                                    <p><strong>ANEXAR AL FORMULARIO: </strong> Fotocopia del documento de identificación,
-                                        certificado de estado ACTIVO de EPS o seguro médico internacional, formato
-                                        compromiso
-                                        de estudiantes y padres de familia para movilidad académica.</p>
-                                </div>
-                                <div class="form-group">
-                                    <label for="fotocopia">Fotocopia del documento de identidad</label>
-                                    <input type="file" name="fotocopia" id="fotocopia" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="certificado-eps">Certificado de EPS</label>
-                                    <input type="file" name="certificado-eps" id="certificado-eps" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="formato">Formato de Compromiso de Movilidad</label>
-                                    <input type="file" name="formato" id="formato" required>
-                                </div>
-                                <div class="form-group requisito">
-                                    <input type="checkbox" name="cumplimiento" id="cumplimiento" required>
-                                    <p>EL PARTICIPANTE CERTIFICA QUE CONOCE Y CUMPLE LOS REQUISITOS DEL CONVENIO
-                                        Y QUE SE CIÑE AL REGLAMENTO DE LA UNIVERSIDAD ANFITRIONA Y DE UNICOLOMBO.</p>
-                                </div>
-                                <div class="form-group">
-                                    <label for="firma-participante">Firma del Participante</label>
-                                    <input type="file" name="firma-participante" id="firma-participante">
-                                </div>
+                            </div>
+                            <div class="form-group">
+                                <p><strong>ANEXAR AL FORMULARIO: </strong> Fotocopia del documento de identificación,
+                                    certificado de estado ACTIVO de EPS o seguro médico internacional, formato
+                                    compromiso
+                                    de estudiantes y padres de familia para movilidad académica.</p>
+                            </div>
+                            <div class="form-group">
+                                <label for="fotocopia">Fotocopia del documento de identidad</label>
+                                <input type="file" name="fotocopia" id="fotocopia" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="certificado-eps">Certificado de EPS</label>
+                                <input type="file" name="certificado-eps" id="certificado-eps" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="formato">Formato de Compromiso de Movilidad</label>
+                                <input type="file" name="formato" id="formato" required>
+                            </div>
+                            <div class="form-group requisito" id="cumplimiento-requisito">
+                                <input type="checkbox" name="cumplimiento" id="cumplimiento" required>
+                                <p>El participante certifica que conoce y cumple los requisitos del convenio
+                                    y que se ciñe al reglamento de la universidad anfitriona y de unicolombo.</p>
+                            </div>
+                            <div class="form-group">
+                                <label for="firma-participante">Firma del Participante</label>
+                                <input type="file" name="firma-participante" id="firma-participante">
+                            </div>
 
                                 <div class="wizard-actions" style="grid-column: span 1;">
                                     <button type="button" class="prev-step">
