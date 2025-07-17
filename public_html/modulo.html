@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Open+Sans&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <script src="../public_html/JS/insertarFilaform3.js"></script>
+    <script src="JS/insertarFilaform3.js"></script>
     <script src="../public_html/JS/insertarfila.js"></script>
 
     <script>
@@ -300,6 +300,7 @@
 
                         <!-- FORMULARIO PASO 1 -->
                         <form class="modulo-form wizard-form" id="form-step-1">
+
                             <div class="form-group">
                                 <label for="nombre">Nombre del Estudiante</label>
                                 <input type="text" id="nombre" name="nombre" required />
@@ -386,6 +387,13 @@
 
                         <form class="modulo-form wizard-form" id="form-step-1">
 
+                            <div class="divisor">
+                                <hr>
+                                <span style="padding: 0 10px; color: #0b4e8b; font-weight: bold;">Datos
+                                    personales:</span>
+
+                            </div>
+
                             <div class="form-group">
                                 <label for="nombre">Nombre(s) del estudiante</label>
                                 <input type="text" id="nombre" name="nombre">
@@ -433,6 +441,12 @@
                                 <label for="paisNac">Pais de nacimiento</label>
                                 <input type="text" id="paisNac" name="paisNac">
                             </div>
+
+                            <div class="divisor">
+                                <hr>
+                                <span style="padding: 0 10px; color: #0b4e8b; font-weight: bold;">Datos medicos:</span>
+
+                            </div>
                             <div class="form-group">
                                 <label for="grupoS">Grupo sanguineo</label>
                                 <select name="grupoS" id="grupoS" required>
@@ -450,6 +464,14 @@
                             <div class="form-group">
                                 <label for="eps">EPS</label>
                                 <input type="text" id="eps" name="eps">
+                            </div>
+
+
+                            <div class="divisor">
+                                <hr>
+                                <span style="padding: 0 10px; color: #0b4e8b; font-weight: bold;">Datos de
+                                    residencia:</span>
+
                             </div>
 
                             <div class="form-group">
@@ -543,7 +565,7 @@
                                 <hr>
                                 <span style="padding: 0 10px; color: #0b4e8b; font-weight: bold;">Responsable de
                                     intercambios</span>
-                                <hr>
+
                             </div>
 
                             <div class="form-group">
@@ -570,7 +592,7 @@
                                 <hr>
                                 <span style="padding: 0 10px; color: #0b4e8b; font-weight: bold;">Responsable
                                     academico</span>
-                                <hr>
+
                             </div>
 
                             <div class="form-group">
@@ -687,20 +709,12 @@
 
                             <div class="form-group" id="requisitos">
 
-
-                                <label for="matricula"> <input type="checkbox" name="matricula" id="matricula">
-                                    Matriculado en programa de pregrado de la universidad socia y ser estudiante activo.
-                                </label>
-                                <label for="creditos"> <input type="checkbox" name="creditos" id="creditos">Haber
-                                    realizado el 50% de los créditos y no estar bajo sanción disciplinaria.</label>
-                                <label for="matricula"> <input type="checkbox" name="promedio" id="promedio">Promedio de
-                                    3.5 o superior</label>
                             </div>
 
                             <div class="divisor">
                                 <hr>
                                 <span style="padding: 0 10px; color: #0b4e8b; font-weight: bold;"></span>
-                                <hr>
+
                             </div>
 
                             <div class="form-group">
@@ -1088,10 +1102,22 @@
                                 <div class="circle">3</div>
                                 <span>Motivación</span>
                             </div>
-                            <div class="step">
+                            <div>
+
+                             <div class="step">
                                 <div class="circle">4</div>
                                 <span>Requisitos</span>
+
+                                <div class="form-group">
+                                    <button type="button" class="modal">i</button>
+                                </div>
+
                             </div>
+
+                            </div>
+
+
+
                             <div class="step">
                                 <div class="circle">5</div>
                                 <span>Espacio Coordinador</span>
@@ -1352,7 +1378,8 @@
                         <form class="modulo-form wizard-form hidden" id="form-step-4"
                             style="grid-template-columns: 1fr;">
                             <div class="form-group">
-                                <button title="Requisitos para la Movilidad Académica" class="modalc-btn" id="abrirmodalc">
+                                <button title="Requisitos para la Movilidad Académica" class="modalc-btn"
+                                    id="abrirmodalc">
                                     <i class="fas fa-info-circle"></i>
                                 </button>
                             </div>
@@ -1589,10 +1616,10 @@
                                 <input type="date" id="fechasestancia" name="fechasestancia" required />
                             </div>
 
-                            
+
 
                             <div class="form-group">
-                                <label for="programaacademico" >Programa Académico(s):
+                                <label for="programaacademico">Programa Académico(s):
                                 </label>
                                 <input type="text" id="programaacademico" name="programaacademico" required />
                             </div>
