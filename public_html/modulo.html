@@ -11,8 +11,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Open+Sans&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <script src="../public_html/JS/insertarFilaform3.js"></script>
     <script src="../public_html/JS/insertarfila.js"></script>
+    <script src="../public_html/JS/insertarFilaform3.js"></script>
 
     <script>
         document.addEventListener("DOMContentLoaded", () => {
@@ -68,11 +68,14 @@
             const modal = document.getElementById("modalc");
             const btnAbrir = document.getElementById("abrirmodalc");
             const spanCerrar = document.querySelector(".modalc-cerrar");
-
+            
             // Mostrar el modal
             btnAbrir.onclick = () => {
+                 event.preventDefault();
                 modal.style.display = "block";
             };
+
+           
 
             // Cerrar el modal al hacer clic en la X
             spanCerrar.onclick = () => {
@@ -300,6 +303,7 @@
 
                         <!-- FORMULARIO PASO 1 -->
                         <form class="modulo-form wizard-form" id="form-step-1">
+
                             <div class="form-group">
                                 <label for="nombre">Nombre del Estudiante</label>
                                 <input type="text" id="nombre" name="nombre" required />
@@ -386,6 +390,13 @@
 
                         <form class="modulo-form wizard-form" id="form-step-1">
 
+                            <div class="divisor">
+                                <hr>
+                                <span style="padding: 0 10px; color: #0b4e8b; font-weight: bold;">Datos
+                                    personales:</span>
+
+                            </div>
+
                             <div class="form-group">
                                 <label for="nombre">Nombre(s) del estudiante</label>
                                 <input type="text" id="nombre" name="nombre">
@@ -433,6 +444,12 @@
                                 <label for="paisNac">Pais de nacimiento</label>
                                 <input type="text" id="paisNac" name="paisNac">
                             </div>
+
+                            <div class="divisor">
+                                <hr>
+                                <span style="padding: 0 10px; color: #0b4e8b; font-weight: bold;">Datos medicos:</span>
+
+                            </div>
                             <div class="form-group">
                                 <label for="grupoS">Grupo sanguineo</label>
                                 <select name="grupoS" id="grupoS" required>
@@ -450,6 +467,14 @@
                             <div class="form-group">
                                 <label for="eps">EPS</label>
                                 <input type="text" id="eps" name="eps">
+                            </div>
+
+
+                            <div class="divisor">
+                                <hr>
+                                <span style="padding: 0 10px; color: #0b4e8b; font-weight: bold;">Datos de
+                                    residencia:</span>
+
                             </div>
 
                             <div class="form-group">
@@ -491,6 +516,12 @@
 
                         <!-- FORMULARIO PASO 2 -->
                         <form class="modulo-form wizard-form hidden" id="form-step-2">
+
+                             <div class="divisor">
+                                <hr>
+                                <span style="padding: 0 10px; color: #0b4e8b; font-weight: bold;">Datos del estudiante:</span>
+
+                            </div>
 
                             <div class="form-group">
                                 <label for="uniOrigen">Universidad de origen</label>
@@ -542,8 +573,8 @@
                             <div class="divisor">
                                 <hr>
                                 <span style="padding: 0 10px; color: #0b4e8b; font-weight: bold;">Responsable de
-                                    intercambios</span>
-                                <hr>
+                                    intercambios:</span>
+
                             </div>
 
                             <div class="form-group">
@@ -569,8 +600,8 @@
                             <div class="divisor">
                                 <hr>
                                 <span style="padding: 0 10px; color: #0b4e8b; font-weight: bold;">Responsable
-                                    academico</span>
-                                <hr>
+                                    academico:</span>
+
                             </div>
 
                             <div class="form-group">
@@ -667,7 +698,7 @@
                                     <i class="fas fa-arrow-left"></i> Anterior
                                 </button>
 
-                                <button type="button" class="añadir" onclick="insertarFila()">
+                                <button type="button" class="añadir" onclick="insertarFilaE()">
                                     Añadir espacio
                                 </button>
 
@@ -680,27 +711,33 @@
 
                         <form action="" class="modulo-form wizard-form hidden" id="form-step-4">
 
-                            <div class="form-group" id="titleR">
-                                <label>Requisitos</label>
+                            
+                            <div class="form-group">
+                                <button title="Requisitos para la Movilidad Académica" class="modalc-btn"
+                                    id="abrirmodalc">
+                                    <i class="fas fa-info-circle"></i>
+                                </button>
                             </div>
-
-
-                            <div class="form-group" id="requisitos">
-
-
-                                <label for="matricula"> <input type="checkbox" name="matricula" id="matricula">
-                                    Matriculado en programa de pregrado de la universidad socia y ser estudiante activo.
-                                </label>
-                                <label for="creditos"> <input type="checkbox" name="creditos" id="creditos">Haber
-                                    realizado el 50% de los créditos y no estar bajo sanción disciplinaria.</label>
-                                <label for="matricula"> <input type="checkbox" name="promedio" id="promedio">Promedio de
-                                    3.5 o superior</label>
+                            <div class="modalc" id="modalc">
+                                <div class="modalc-contenido">
+                                    <span class="modalc-cerrar">&times;</span>
+                                    <h4>Requisitos para la Movilidad Académica</h4>
+                                    <p>-Estar matriculado en un programa de pregrado de Unicolombo y ser estudiante
+                                        acitvo.
+                                    </p>
+                                    <p>-Haber realizado como mínimo el 40% de los créditos y no estar bajo sanción
+                                        disciplinaria.</p>
+                                    <p>-Tener un promedio acumulado de 3.5 o superior.</p>
+                                    <p>-Asumir los costos de desplazamiento y sostenimiento durante su estancia en la
+                                        universidad anfitriona.</p>
+                                </div>
                             </div>
+                            
 
                             <div class="divisor">
                                 <hr>
                                 <span style="padding: 0 10px; color: #0b4e8b; font-weight: bold;"></span>
-                                <hr>
+
                             </div>
 
                             <div class="form-group">
@@ -1184,10 +1221,22 @@
                                 <div class="circle">3</div>
                                 <span>Motivación</span>
                             </div>
-                            <div class="step">
-                                <div class="circle">4</div>
-                                <span>Requisitos</span>
+                            <div>
+
+                                <div class="step">
+                                    <div class="circle">4</div>
+                                    <span>Requisitos</span>
+
+                                    <div class="form-group">
+                                        <button type="button" class="modal">i</button>
+                                    </div>
+
+                                </div>
+
                             </div>
+
+
+
                             <div class="step">
                                 <div class="circle">5</div>
                                 <span>Espacio Coordinador</span>

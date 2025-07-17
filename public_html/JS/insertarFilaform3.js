@@ -1,4 +1,4 @@
-function insertarFila(){
+function insertarFilaE(){
     let tablaForm = document.getElementById('tabla');
 
     let codigo = document.createElement('input');
