@@ -1077,7 +1077,7 @@
 
                         </div>
                         <form class="modulo-form wizard-form" id="form-step-1"
-                        style="display: grid; grid-template-columns: 1fr 1fr;">
+                            style="display: grid; grid-template-columns: 1fr 1fr;">
                             <div class="form-group">
                                 <label form="label">Fecha de solicitud:</label>
                                 <input type="date" id="fecha" name="fecha" required>
@@ -1085,22 +1085,22 @@
 
                             <div class="form-group">
                                 <label for="label">Nombre de movilidad:</label>
-                                <input type="text" class="input" id=" nombre de movilidad"required>
+                                <input type="text" class="input" id=" nombre de movilidad" required>
                             </div>
 
                             <div class="form-group">
                                 <label for="label">Lugar de destino:</label>
-                                <input type="text" class="input" id="lugar de destino"required>
+                                <input type="text" class="input" id="lugar de destino" required>
                             </div>
 
                             <div class="form-group">
                                 <label for="label">Coordinacion general de la movilidad:</label>
-                                <input type="text" class="input" id="cordinacion de movilidad"required>
+                                <input type="text" class="input" id="cordinacion de movilidad" required>
                             </div>
 
                             <div class="form-group">
                                 <label for="label">Programa academico/Area:</label>
-                                <input type="text" class="input" id="programa academico"required>
+                                <input type="text" class="input" id="programa academico" required>
                             </div>
 
                             <div class="form-group fechas-group">
@@ -1113,32 +1113,32 @@
 
                             <div class="form-group">
                                 <label for="label">Numero estudiantes/Docentes beneficiados:</label>
-                                <input type="text" class="input" id="numero estudiantes-docentes"required>
+                                <input type="text" class="input" id="numero estudiantes-docentes" required>
                             </div>
 
                             <div class="form-group">
                                 <label for="label">Semestre:</label>
-                                <input type="text" class="input" id="semestre"required>
+                                <input type="text" class="input" id="semestre" required>
                             </div>
 
                             <div class="form-group">
                                 <label for="label">Requisitos para estudiantes:</label>
-                                <input type="text" class="input" id="requisito estudiante"required>
+                                <input type="text" class="input" id="requisito estudiante" required>
                             </div>
 
                             <div class="form-group">
                                 <label for="label">Condiciones participacion docente:</label>
-                                <input type="text" class="input" id="condiciones docente"required>
+                                <input type="text" class="input" id="condiciones docente" required>
                             </div>
 
                             <div class="form-group">
                                 <label for="label">Proposito de movilidad e impacto estudiantes:</label>
-                                <input type="text" class="input" id="proposito de movilidad"required>
+                                <input type="text" class="input" id="proposito de movilidad" required>
                             </div>
 
                             <div class="form-group">
                                 <label for="label">Resultado esperado:</label>
-                                <input type="text" class="input" id="resultado esperado"required>
+                                <input type="text" class="input" id="resultado esperado" required>
                             </div>
                             <div class="wizard-actions" style="grid-column: span 2;">
                                 <button type="submit" class="submit-btn">
@@ -1644,11 +1644,11 @@
                                 <label for="instituciónorigen">Institución de origen: </label>
                                 <div class="input-buscar-institucion"
                                     style="display: flex; gap: 0.5rem; align-items: center; width: 100%;">
-                                    <input type="text" id="institucion" style="width: 90%;" name="institucion"
+                                    <input type="text" id="institucion-origen" style="width:90%;" name="institucion"
                                         required />
                                     <button type="button" id="btn-buscar-institucion-origen" title="Buscar institución"
-                                        style="padding: 0.25rem 0.75rem; cursor: pointer;">
-
+                                        style="padding:0.5rem;background-color:#0b4e8b;color:#fff;border:none;border-radius:6px;cursor:pointer;">
+                                        <i class="fas fa-search"></i>
                                     </button>
                                 </div>
                             </div>
@@ -1688,10 +1688,10 @@
                                 <input type="date" id="fechasestancia" name="fechasestancia" required />
                             </div>
 
-                            
+
 
                             <div class="form-group">
-                                <label for="programaacademico" >Programa Académico(s):
+                                <label for="programaacademico">Programa Académico(s):
                                 </label>
                                 <input type="text" id="programaacademico" name="programaacademico" required />
                             </div>
@@ -1980,13 +1980,58 @@
 
     </div>
 
-
     <script>
-        const INSTITUCIONES_ORIGEN_DATA = [
-            { id: "UCO", nombre: "Unicolombo", pais: "Colombia", tipovinculacion: "docente", cargo: "Profesor visitante" },
-            { id: "UNIANDES", nombre: "Universidad de los Andes", pais: "Colombia", tipovinculacion: "investigador", cargo: "Investigador invitado" },
-            { id: "UNAM", nombre: "Universidad Nacional Autónoma de México", pais: "México", tipovinculacion: "docente", cargo: "Catedrático" }
-        ];
+        document.addEventListener("DOMContentLoaded", () => {
+
+            const instituciones = [
+                {
+                    nombre: "Universidad Nacional",
+                    pais: "Colombia",
+                    cargo: "Docente",
+                    programaacademico: "Ingeniería de Sistemas"
+                },
+                {
+                    nombre: "Universidad de Buenos Aires",
+                    pais: "Argentina",
+                    cargo: "Investigador",
+                    programaacademico: "Ciencias Sociales"
+                }
+            ];
+
+            const btnBuscar = document.getElementById("btn-buscar-institucion-origen");
+            if (!btnBuscar) return;
+
+            btnBuscar.addEventListener("click", () => {
+
+                const form = btnBuscar.closest("form");
+                if (!form) return;
+
+                const inputInstitucion = form.querySelector("#institucion-origen");
+                const inputPais = form.querySelector("#paisorigen");
+                const inputCargo = form.querySelector("#cargo");
+                const inputPrograma = form.querySelector("#programaacademico");
+
+                const valor = (inputInstitucion?.value || "").trim().toLowerCase();
+
+                if (!valor) {
+                    alert("Por favor ingresa el nombre de la institución.");
+                    return;
+                }
+
+
+                const resultado = instituciones.find(item =>
+                    item.nombre.toLowerCase().includes(valor)
+                );
+
+                if (resultado) {
+                    if (inputPais) inputPais.value = resultado.pais;
+                    if (inputCargo) inputCargo.value = resultado.cargo;
+                    if (inputPrograma) inputPrograma.value = resultado.programaacademico;
+                } else {
+                    alert("Institución no encontrada.");
+                }
+            });
+        });
     </script>
 
 
