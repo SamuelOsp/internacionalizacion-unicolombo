@@ -22,6 +22,30 @@ function insertarFilaE(){
     tablaForm.appendChild(materia);
     tablaForm.appendChild(codigo2);
     tablaForm.appendChild(materia2);
-            
 
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    
+  let seleccion = document.getElementById('typeMovilidad');
+  
+  let hiddenTabla = document.getElementById('tabla');
+
+  seleccion.addEventListener("change", function () {
+
+    let valor = seleccion.value;
+
+    
+  if(valor && valor === 'intercambio'){
+
+    hiddenTabla.style.display = 'grid';
+
+  }else{
+    hiddenTabla.style.display= 'none';
+  }
+
+  });
+
+
+});
