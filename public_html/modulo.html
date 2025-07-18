@@ -1022,7 +1022,7 @@
 
                         <!-- FORMULARIO PASO 1 -->
                          
-                        <form class="modulo-form wizard-form" id="form-step-1">
+                        <form class="modulo-form wizard-form" id="form-step-1" style="grid-template-columns: 1fr 1fr;">
                             <div class="form-group">
                                 <label for="programa">Programa</label>
                                 <select id="programa" name="programa" required>
@@ -1084,7 +1084,7 @@
                                 <input type="text" name="visitar" id="visitar" />
                             </div>
 
-                            <div class="wizard-actions">
+                            <div class="wizard-actions" style="column-span: 2;">
                                 <div></div>
                                 <!-- espacio a la izquierda -->
                                 <button type="button" class="next-step">
@@ -1095,15 +1095,11 @@
                         </form>
 
                         <!-- FORMULARIO PASO 2 -->
-
-
                         <form class="modulo-form wizard-form tabla-movilidad hidden" id="form-step-2"
                             style="grid-template-columns: 1fr">
 
-
-
                             <div class="tabla-responsive">
-                                <div class="tabla" id="tabla">
+                                <div class="tabla" id="tablayork">
                                     <!-- Fila encabezado -->
                                     <div class="encabezado">No°</div>
                                     <div class="encabezado">Nombre</div>
