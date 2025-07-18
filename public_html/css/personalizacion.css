@@ -90,7 +90,7 @@
 }
 
 .tabla {
-    display: grid;
+    display: none;
     grid-template-columns: repeat(4, 1fr);
     grid-column: 1 / -1;
     width: 100%;
