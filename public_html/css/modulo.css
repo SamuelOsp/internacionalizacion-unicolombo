@@ -212,11 +212,6 @@ button[type="submit"]:hover {
     transition: all 0.3s ease;
 }
 
-
-
-
-
-
 /*movilidad entrante docente samuel ospina*/
 
 .hidden {
@@ -259,26 +254,6 @@ button[type="submit"]:hover {
     background-color: #003865;
     color: white;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 .step.active {
     color: #003865;
@@ -378,7 +353,7 @@ button[type="submit"]:hover {
 }
 
 #tablita {
-    display: flex;
+    display: none;
     flex-direction: column;
     border: #999 solid 1px;
     padding: 10px;
@@ -513,3 +488,12 @@ input[type=number]::-webkit-outer-spin-button {
 .fechas-flex input[type="date"] {
     flex: 1;}
 
+.campo-tablita {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    width: 95%;
+    margin-bottom: 5px;
+}
