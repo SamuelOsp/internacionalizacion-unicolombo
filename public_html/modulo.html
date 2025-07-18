@@ -1021,6 +1021,7 @@
                         </div>
 
                         <!-- FORMULARIO PASO 1 -->
+                         
                         <form class="modulo-form wizard-form" id="form-step-1">
                             <div class="form-group">
                                 <label for="programa">Programa</label>
@@ -1049,13 +1050,12 @@
                             </div>
                             <div class="form-group">
                                 <label for="convenio">Convenio:</label>
-                                <label for="convenio">
-                                    <input type="radio" id="convenio" name="convenio" value="Si" />
-                                    Si
-                                    <input type="radio" id="convenio" name="convenio" value="No" />
-                                    No
-                                </label>
-                            </div>
+                                <div style="display: flex; gap: 10px;">
+                                <label><input type="radio" name="convenio" value="Si"> Sí</label>
+                                <label><input type="radio" name="convenio" value="No"> No</label>
+                        </div>
+                                </div>
+
                             <div class="form-group">
                                 <label for="ciu/des"> Ciudad/Destino</label>
                                 <input type="text" id="ciu/des" name="ciu/des" />
@@ -1130,9 +1130,9 @@
                                     <input type="text" class="celda" name="CopiaID" />
                                     <input type="text" class="celda" name="Compromiso" />
                                     <input type="text" class="celda" name="EPS" />
-                                    <input type="text" class="celda" name="Seguro" />
-                                    <input type="text" class="celda" name="Poliza" />
-                                    <input type="text" class="celda" name="Prueba" />
+                                    <input type="text" class="celda" name="Seguro internacional" />
+                                    <input type="text" class="celda" name="Poliza estudiantil" />
+                                    <input type="text" class="celda" name="Prueba de Embarazo" />
                                     <input type="text" class="celda" name="Telefono" />
                                     <input type="text" class="celda" name="Email" />
                                     </div>
