@@ -66,20 +66,32 @@
 
             // Obtener elementos
             const modal = document.getElementById("modalc");
+            const modale = document.getElementById("modale");
             const btnAbrir = document.getElementById("abrirmodalc");
+            const btnAbrire = document.getElementById("abrirmodale");
             const spanCerrar = document.querySelector(".modalc-cerrar");
-            
+            const spanCerrare = document.querySelector(".modale-cerrar");
+
             // Mostrar el modal
             btnAbrir.onclick = () => {
-                 event.preventDefault();
+                event.preventDefault();
                 modal.style.display = "block";
             };
 
-           
+            btnAbrire.onclick = () => {
+                event.preventDefault();
+                modale.style.display = "block";
+            };
+
+
 
             // Cerrar el modal al hacer clic en la X
             spanCerrar.onclick = () => {
                 modal.style.display = "none";
+            };
+
+            spanCerrare.onclick = () => {
+                modale.style.display = "none";
             };
 
             // Cerrar el modal al hacer clic fuera del contenido
@@ -88,6 +100,19 @@
                     modal.style.display = "none";
                 }
             };
+
+            const select = document.getElementById('tmovilidad');
+            const tablita = document.getElementById('tablita');
+
+            select.addEventListener('change', function () {
+                const selectValor = select.value;
+
+                if (selectValor === 'intercambio') {
+                    tablita.style.display = 'flex';
+                } else {
+                    tablita.style.display = 'none';
+                }
+            });
         });
 
         function insertarFila() {
@@ -99,6 +124,7 @@
             ['codigo-anfi', 'nombre-anfi', 'codigo-orig', 'nombre-orig'].forEach(campo => {
                 const input = document.createElement('input');
                 input.type = campo === 'codigo-anfi' ? 'number' : campo === 'codigo-orig' ? 'number' : 'text';
+                input.className = 'campo-tablita';
                 input.name = `${campo}`;
                 input.id = `${campo}`;
                 input.required;
@@ -454,18 +480,22 @@
                                 <label for="grupoS">Grupo sanguineo</label>
                                 <select name="grupoS" id="grupoS" required>
                                     <option value="" disabled selected>Seleccione una opción</option>
-                                    <option value="A+">A+</option>
-                                    <option value="A-">A-</option>
-                                    <option value="B+">B+</option>
-                                    <option value="B-">B-</option>
-                                    <option value="AB+">AB+</option>
-                                    <option value="AB-">AB-</option>
-                                    <option value="O+">O+</option>
-                                    <option value="O-">O-</option>
+                                    <option value="A">A</option>
+                                    <option value="B">B</option>
+                                    <option value="AB">AB</option>
+                                    <option value="O">O</option>
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="eps">EPS</label>
+                                <label for="factorRH">Factor RH</label>
+                                <select name="factorRH" id="factorRH" required>
+                                    <option value="" disabled selected>Seleccione una opción</option>
+                                    <option value="+">+</option>
+                                    <option value="-">-</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="eps">Seguro medico / EPS</label>
                                 <input type="text" id="eps" name="eps">
                             </div>
 
@@ -473,7 +503,7 @@
                             <div class="divisor">
                                 <hr>
                                 <span style="padding: 0 10px; color: #0b4e8b; font-weight: bold;">Datos de
-                                    residencia:</span>
+                                    contacto:</span>
 
                             </div>
 
@@ -491,7 +521,7 @@
                                 <input type="tel" id="telefono" name="telefono">
                             </div>
                             <div class="form-group">
-                                <label for="celular">celular</label>
+                                <label for="celular">Celular</label>
                                 <input type="tel" id="celular" name="celular">
                             </div>
                             <div class="form-group">
@@ -517,9 +547,10 @@
                         <!-- FORMULARIO PASO 2 -->
                         <form class="modulo-form wizard-form hidden" id="form-step-2">
 
-                             <div class="divisor">
+                            <div class="divisor">
                                 <hr>
-                                <span style="padding: 0 10px; color: #0b4e8b; font-weight: bold;">Datos del estudiante:</span>
+                                <span style="padding: 0 10px; color: #0b4e8b; font-weight: bold;">Datos de
+                                    institucion:</span>
 
                             </div>
 
@@ -534,7 +565,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="carrera">Carrera que cursa</label>
+                                <label for="carrera">Programa academico</label>
                                 <input type="text" id="carrera" name="carrera">
                             </div>
 
@@ -665,7 +696,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="asignaturaOrigen">Las asignaturas pertenecen a:</label>
+                                <label for="asignaturaOrigen">Programa academico:</label>
                                 <input type="text" name="asignaturaOrigen" id="asignaturaOrigen" placeholder="EJ: ">
                             </div>
 
@@ -711,16 +742,16 @@
 
                         <form action="" class="modulo-form wizard-form hidden" id="form-step-4">
 
-                            
+
                             <div class="form-group">
                                 <button title="Requisitos para la Movilidad Académica" class="modalc-btn"
-                                    id="abrirmodalc">
+                                    id="abrirmodale">
                                     <i class="fas fa-info-circle"></i>
                                 </button>
                             </div>
-                            <div class="modalc" id="modalc">
+                            <div class="modalc" id="modale">
                                 <div class="modalc-contenido">
-                                    <span class="modalc-cerrar">&times;</span>
+                                    <span class="modale-cerrar">&times;</span>
                                     <h4>Requisitos para la Movilidad Académica</h4>
                                     <p>-Estar matriculado en un programa de pregrado de Unicolombo y ser estudiante
                                         acitvo.
@@ -732,7 +763,7 @@
                                         universidad anfitriona.</p>
                                 </div>
                             </div>
-                            
+
 
                             <div class="divisor">
                                 <hr>
@@ -903,7 +934,8 @@
                         </form>
 
                         <!-- FORMULARIO PASO 2 -->
-                        <form class="modulo-form wizard-form hidden" id="form-step-2" style="grid-template-columns: 1fr 1fr;">
+                        <form class="modulo-form wizard-form hidden" id="form-step-2"
+                            style="grid-template-columns: 1fr 1fr;">
                             <div class="form-group" style="grid-column: span 2">
                                 <label for="nombre">Insititución de Destino</label>
                                 <input type="text" id="instituciondestino" name="instituciondestino" required />
@@ -942,7 +974,7 @@
                                 </select>
                             </div>
 
-                            <div class="form-group" >
+                            <div class="form-group">
                                 <label for="fechamovilidad">Fecha de Movilidad</label>
                                 <input type="date" id="fechamovilidad" name="fechamovilidad" required />
                             </div>
@@ -989,10 +1021,28 @@
                         </div>
 
                         <!-- FORMULARIO PASO 1 -->
-                        <form class="modulo-form wizard-form" id="form-step-1">
+                         
+                        <form class="modulo-form wizard-form" id="form-step-1" style="grid-template-columns: 1fr 1fr;">
                             <div class="form-group">
-                                <label for="programa">Programa:</label>
-                                <input type="text" id="programa" name="programa" required />
+                                <label for="programa">Programa</label>
+                                <select id="programa" name="programa" required>
+                                    <option value="" disabled selected>
+                                        Selecciona un programa
+                                    </option>
+                                    <option value="bilinguismo">
+                                        Licenciatura en Bilingüismo con énfasis en Inglés
+                                    </option>
+                                    <option value="contaduria">Contaduría Pública</option>
+                                    <option value="administracion">
+                                        Administración de Empresas
+                                    </option>
+                                    <option value="derecho">Derecho</option>
+                                    <option value="industrial">Ingeniería Industrial</option>
+                                    <option value="sistemas">Ingeniería de Sistemas</option>
+                                    <option value="turismo">
+                                        Administración de Empresas Turísticas y Hoteleras
+                                    </option>
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label for="fechaI">Fecha de inicio:</label>
@@ -1000,13 +1050,12 @@
                             </div>
                             <div class="form-group">
                                 <label for="convenio">Convenio:</label>
-                                <label for="convenio">
-                                    <input type="radio" id="convenio" name="convenio" value="Si" />
-                                    Si
-                                    <input type="radio" id="convenio" name="convenio" value="No" />
-                                    No
-                                </label>
-                            </div>
+                                <div style="display: flex; gap: 10px;">
+                                <label><input type="radio" name="convenio" value="Si"> Sí</label>
+                                <label><input type="radio" name="convenio" value="No"> No</label>
+                        </div>
+                                </div>
+
                             <div class="form-group">
                                 <label for="ciu/des"> Ciudad/Destino</label>
                                 <input type="text" id="ciu/des" name="ciu/des" />
@@ -1035,7 +1084,7 @@
                                 <input type="text" name="visitar" id="visitar" />
                             </div>
 
-                            <div class="wizard-actions">
+                            <div class="wizard-actions" style="column-span: 2;">
                                 <div></div>
                                 <!-- espacio a la izquierda -->
                                 <button type="button" class="next-step">
@@ -1046,15 +1095,11 @@
                         </form>
 
                         <!-- FORMULARIO PASO 2 -->
-
-
                         <form class="modulo-form wizard-form tabla-movilidad hidden" id="form-step-2"
                             style="grid-template-columns: 1fr">
 
-
-
                             <div class="tabla-responsive">
-                                <div class="tabla" id="tabla">
+                                <div class="tabla" id="tablayork">
                                     <!-- Fila encabezado -->
                                     <div class="encabezado">No°</div>
                                     <div class="encabezado">Nombre</div>
@@ -1081,11 +1126,12 @@
                                     <input type="text" class="celda" name="CopiaID" />
                                     <input type="text" class="celda" name="Compromiso" />
                                     <input type="text" class="celda" name="EPS" />
-                                    <input type="text" class="celda" name="Seguro" />
-                                    <input type="text" class="celda" name="Poliza" />
-                                    <input type="text" class="celda" name="Prueba" />
+                                    <input type="text" class="celda" name="Seguro internacional" />
+                                    <input type="text" class="celda" name="Poliza estudiantil" />
+                                    <input type="text" class="celda" name="Prueba de Embarazo" />
                                     <input type="text" class="celda" name="Telefono" />
                                     <input type="text" class="celda" name="Email" />
+                                    </div>
                                 </div>
                                 <div class="wizard-actions">
                                     <button type="button" class="prev-step">
@@ -1100,7 +1146,6 @@
                                         <i class="fas fa-save"></i> Guardar
                                     </button>
                                 </div>
-                            </div>
                         </form>
 
                     </div>
@@ -1116,28 +1161,28 @@
                         <form class="modulo-form wizard-form" id="form-step-1"
                             style="display: grid; grid-template-columns: 1fr 1fr;">
                             <div class="form-group">
-                                <label form="label">Fecha de solicitud:</label>
+                                <label for="label">Fecha de solicitud:</label>
                                 <input type="date" id="fecha" name="fecha" required>
                             </div>
 
                             <div class="form-group">
                                 <label for="label">Nombre de movilidad:</label>
-                                <input type="text" class="input" id=" nombre de movilidad" required>
+                                <input type="text" class="input" id="nombre-de-movilidad" required>
                             </div>
 
                             <div class="form-group">
                                 <label for="label">Lugar de destino:</label>
-                                <input type="text" class="input" id="lugar de destino" required>
+                                <input type="text" class="input" id="lugar-de-destino" required>
                             </div>
 
                             <div class="form-group">
                                 <label for="label">Coordinacion general de la movilidad:</label>
-                                <input type="text" class="input" id="cordinacion de movilidad" required>
+                                <input type="text" class="input" id="cordinacion-de-movilidad" required>
                             </div>
 
                             <div class="form-group">
                                 <label for="label">Programa academico/Area:</label>
-                                <input type="text" class="input" id="programa academico" required>
+                                <input type="text" class="input" id="programa-academico" required>
                             </div>
 
                             <div class="form-group fechas-group">
@@ -1150,7 +1195,7 @@
 
                             <div class="form-group">
                                 <label for="label">Numero estudiantes/Docentes beneficiados:</label>
-                                <input type="text" class="input" id="numero estudiantes-docentes" required>
+                                <input type="text" class="input" id="numero-estudiantes-docentes" required>
                             </div>
 
                             <div class="form-group">
@@ -1160,31 +1205,31 @@
 
                             <div class="form-group">
                                 <label for="label">Requisitos para estudiantes:</label>
-                                <input type="text" class="input" id="requisito estudiante" required>
+                                <input type="text" class="input" id="requisito-estudiante" required>
                             </div>
 
                             <div class="form-group">
                                 <label for="label">Condiciones participacion docente:</label>
-                                <input type="text" class="input" id="condiciones docente" required>
+                                <input type="text" class="input" id="condiciones-docente" required>
                             </div>
 
                             <div class="form-group">
                                 <label for="label">Proposito de movilidad e impacto estudiantes:</label>
-                                <input type="text" class="input" id="proposito de movilidad" required>
+                                <input type="text" class="input" id="proposito-de-movilidad" required>
                             </div>
 
                             <div class="form-group">
                                 <label for="label">Resultado esperado:</label>
-                                <input type="text" class="input" id="resultado esperado" required>
+                                <input type="text" class="input" id="resultado-esperado" required>
                             </div>
                             <div class="wizard-actions" style="grid-column: span 2;">
                                 <button type="submit" class="submit-btn">
                                     <i class="fas fa-save"></i> Guardar
                                 </button>
                             </div>
-
+                        </form>
                     </div>
-                    </form>
+                    
                     <script>
                         // Espera a que cargue todo el contenido HTML
                         document.addEventListener("DOMContentLoaded", function () {
@@ -1222,15 +1267,9 @@
                                 <span>Motivación</span>
                             </div>
                             <div>
-
                                 <div class="step">
                                     <div class="circle">4</div>
                                     <span>Requisitos</span>
-
-                                    <div class="form-group">
-                                        <button type="button" class="modal">i</button>
-                                    </div>
-
                                 </div>
 
                             </div>
@@ -1264,6 +1303,7 @@
                                     <option value="ce">Cedula de extranjeria</option>
                                     <option value="ti">Tarjeta de identidad</option>
                                     <option value="p">Pasaporte</option>
+                                    <option value="de">Documento extranjero</option>
                                 </select>
                             </div>
                             <div class="form-group">
@@ -1426,24 +1466,25 @@
                             </div>
                             <div class="form-group">
                                 <label for="tmovilidad">Tipo de Movilidad</label>
-                                <select name="factor-rh" id="factor-rh" required>
+                                <select name="tmovilidad" id="tmovilidad" required>
                                     <option value="" disabled selected>--Seleccione una opción--</option>
                                     <option value="intercambio">Intercambio Académico</option>
                                     <option value="pasantia">Pasantía de Investigación</option>
                                     <option value="practica">Práctica Profesional</option>
                                     <option value="voluntariado">Voluntariado</option>
+                                    <option value="visita">Visita Académica</option>
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="uni-origen">Universidad de Origen</label>
-                                <input type="text" name="uni-origen" id="uni-origen" required>
+                                <label for="inst-origen">Unstitución de Origen</label>
+                                <input type="text" name="inst-origen" id="inst-origen" required>
                             </div>
                             <div class="form-group">
                                 <label for="sede">Sede</label>
-                                <input type="text" name="sede" id="sede" required>
+                                <input type="text" name="sede" id="sede">
                             </div>
                             <div class="form-group">
-                                <label for="program">Programa</label>
+                                <label for="program">Programa Académico</label>
                                 <input type="text" name="program" id="program" required>
                             </div>
                             <div class="form-group" id="tablita">
@@ -1460,10 +1501,14 @@
                                 </div>
                                 <div id="data-tabla">
                                     <div id="fila-tabla">
-                                        <input type="number" name="codigo-anfi" id="codigo-anfi" required>
-                                        <input type="text" name="nombre-anfi" id="nombre-anfi" required>
-                                        <input type="number" name="codigo-orig" id="codigo-orig" required>
-                                        <input type="text" name="nombre-orig" id="nombre-orig" required>
+                                        <input type="number" class="campo-tablita" name="codigo-anfi" id="codigo-anfi"
+                                            required>
+                                        <input type="text" class="campo-tablita" name="nombre-anfi" id="nombre-anfi"
+                                            required>
+                                        <input type="number" class="campo-tablita" name="codigo-orig" id="codigo-orig"
+                                            required>
+                                        <input type="text" class="campo-tablita" name="nombre-orig" id="nombre-orig"
+                                            required>
                                     </div>
                                 </div>
 
@@ -1502,7 +1547,8 @@
                         <form class="modulo-form wizard-form hidden" id="form-step-4"
                             style="grid-template-columns: 1fr;">
                             <div class="form-group" style="align-items: self-end;">
-                                <button title="Requisitos para la Movilidad Académica" class="modalc-btn" id="abrirmodalc">
+                                <button title="Requisitos para la Movilidad Académica" class="modalc-btn"
+                                    id="abrirmodalc">
                                     <i class="fas fa-info-circle fa-2x" style="color: black;"></i>
                                 </button>
                             </div>
@@ -1518,10 +1564,11 @@
                                     <p>-Tener un promedio acumulado de 3.5 o superior.</p>
                                     <p>-Asumir los costos de desplazamiento y sostenimiento durante su estancia en la
                                         universidad anfitriona.</p>
-                                    <p><strong>ANEXAR AL FORMULARIO: </strong> Fotocopia del documento de identificación,
-                                    certificado de estado ACTIVO de EPS o seguro médico internacional, formato
-                                    compromiso
-                                    de estudiantes y padres de familia para movilidad académica.</p>
+                                    <p><strong>ANEXAR AL FORMULARIO: </strong> Fotocopia del documento de
+                                        identificación,
+                                        certificado de estado ACTIVO de EPS o seguro médico internacional, formato
+                                        compromiso
+                                        de estudiantes y padres de familia para movilidad académica.</p>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -1529,7 +1576,7 @@
                                 <input type="file" name="fotocopia" id="fotocopia" required>
                             </div>
                             <div class="form-group">
-                                <label for="certificado-eps">Certificado de EPS</label>
+                                <label for="certificado-eps">Certificado de Seguro Medico</label>
                                 <input type="file" name="certificado-eps" id="certificado-eps" required>
                             </div>
                             <div class="form-group">

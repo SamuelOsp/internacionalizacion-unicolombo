@@ -212,11 +212,6 @@ button[type="submit"]:hover {
     transition: all 0.3s ease;
 }
 
-
-
-
-
-
 /*movilidad entrante docente samuel ospina*/
 
 .hidden {
@@ -259,26 +254,6 @@ button[type="submit"]:hover {
     background-color: #003865;
     color: white;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 .step.active {
     color: #003865;
@@ -378,7 +353,7 @@ button[type="submit"]:hover {
 }
 
 #tablita {
-    display: flex;
+    display: none;
     flex-direction: column;
     border: #999 solid 1px;
     padding: 10px;
@@ -474,6 +449,15 @@ input[type=number]::-webkit-outer-spin-button {
   cursor: pointer;
 }
 
+.modale-cerrar {
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
 .modalc-btn {
     display: flex;
     width: 5px;
@@ -504,6 +488,50 @@ input[type=number]::-webkit-outer-spin-button {
 .fechas-flex input[type="date"] {
     flex: 1;}
 
+.campo-tablita {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    width: 95%;
+    margin-bottom: 5px;
+}
+.tabla-responsive {
+  overflow-x: auto;
+  width: 100%;
+  
+}
+
+
+.tablayork {
+  display: grid;
+  grid-template-columns: repeat(14,200px);
+    gap: 1px;
+  width: max-content;
+ 
+}
+
+.encabezado {
+  background-color: #00448a;
+  color: #fff;
+  text-align: center;
+  padding: 3px;
+  font-weight: bold;
+  border-radius: 5px;
+  font-family: "Open Sans", sans-serif;
+  width: 100%;
+}
+
+.celda {
+  padding: 3px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-family: "Open Sans", sans-serif;
+  font-size: 14px;
+  width: 100%;
+  box-sizing: border-box;
+}
 .contenedor-entidades {
   margin-top: 1rem;
   width: 100%;
