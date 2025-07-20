@@ -1,0 +1,1274 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>Oficina Internacionalización - Unicolombo</title>
+        <link rel="stylesheet" href="css/main.css" />
+        <link rel="stylesheet" href="css/modulo.css" />
+        <link rel="stylesheet" href="css/personalizacion.css">
+        <script src="js/insertarFilaform3.js"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Open+Sans&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                const tabs = document.querySelectorAll(".modulo-tabs .tab");
+                const contents = document.querySelectorAll(".tab-content");
+
+                tabs.forEach((tab, index) => {
+                    tab.addEventListener("click", () => {
+                        // Desactivar pestañas y contenidos
+                        tabs.forEach(t => t.classList.remove("active"));
+                        contents.forEach(c => c.classList.remove("active"));
+
+                        // Activar pestaña y contenido seleccionado
+                        tab.classList.add("active");
+                        contents[index].classList.add("active");
+                    });
+                });
+            });
+
+
+
+            document.addEventListener("DOMContentLoaded", () => {
+                // Recorre cada contenido de pestaña (tab-content)
+                const tabSections = document.querySelectorAll('.tab-content');
+
+                tabSections.forEach(tabSection => {
+                    const forms = Array.from(tabSection.querySelectorAll('form.wizard-form'));
+                    const steps = Array.from(tabSection.querySelectorAll('.progress-steps .step'));
+
+                    forms.forEach((form, index) => {
+                        // para el botón siguiente le aplica,mos el siguiente evento
+                        const nextBtn = form.querySelector('.next-step');
+                        if (nextBtn && index < forms.length - 1) {
+                            nextBtn.addEventListener('click', () => {
+                                // agregar el evento  al formulario actual y muestra el siguiente
+                                form.classList.add('hidden');
+                                forms[index + 1].classList.remove('hidden');
+
+                                // Cambiar paso activo si existe
+                                if (steps.length > 0 && steps[index + 1]) {
+                                    steps[index].classList.remove('active');
+                                    steps[index + 1].classList.add('active');
+                                }
+                            });
+                        }
+
+                        // agregar los eventos al botón anterior 
+                        const prevBtn = form.querySelector('.prev-step');
+                        if (prevBtn && index > 0) {
+                            prevBtn.addEventListener('click', () => {
+                                // ocultamos el formulario actual y mostramos  el anterior
+                                form.classList.add('hidden');
+                                forms[index - 1].classList.remove('hidden');
+
+                                // Cambiar paso activo si existe
+                                if (steps.length > 0 && steps[index - 1]) {
+                                    steps[index].classList.remove('active');
+                                    steps[index - 1].classList.add('active');
+                                }
+                            });
+                        }
+                    });
+                });
+            });
+
+
+
+
+
+        </script>
+
+
+
+
+    </head>
+    <body>
+        <input type="checkbox" id="sidebar-toggle" hidden>
+
+        <div class="layout">
+
+
+            <!-- ENCABEZADO -->
+            <header class="header">
+                <!-- Fila superior -->
+                <div class="header-top">
+                    <div class="logo-container">
+                        <!-- Logo SiGI -->
+                        <img src="img/logo-sigi2.png" alt="Logo SiGI" class="logo-sigi" />
+                    </div>
+
+                    <div class="header-info">
+                        <h2>Oficina de Internacionalización</h2>
+                    </div>
+
+                    <div class="header-icons">
+                        <a href="#" title="Iniciar sesión"><i class="fas fa-user-circle"></i></a>
+                        <a href="#" title="Notificaciones"><i class="fas fa-bell"></i></a>
+                        <a href="#" title="Ayuda"><i class="fas fa-question-circle"></i></a>
+                    </div>
+                </div>
+
+                <!-- Línea roja divisoria -->
+                <div class="header-divider"></div>
+
+                <!-- Fila inferior -->
+                <div class="header-bottom">
+                    <!-- Botón hamburguesa -->
+                    <label for="sidebar-toggle" class="sidebar-toggle-box" title="Mostrar/Ocultar menú">
+                        <i class="fas fa-bars"></i>
+                    </label>
+                    <!-- Menú principal -->
+                    <nav class="main-nav">
+                        <ul>
+                            <li><a href="#">Oferta Académica</a></li>
+                            <li><a href="#">Admisiones</a></li>
+                            <li><a href="#">Servicios</a></li>
+                            <li><a href="#">Campus Virtual</a></li>
+                            <li><a href="#">Contacto</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </header>
+
+
+
+            <!-- MENÚ LATERAL -->
+
+            <aside class="sidebar">
+                <nav>
+                    <ul>
+                        <li><a href="#">Dashboard</a></li>
+                        <li><a href="#">Movilidad Estudiantil</a></li>
+                        <li><a href="#">Convenios Internacionales</a></li>
+                        <li><a href="#">Docencia e Investigación</a></li>
+                        <li><a href="#">Currículo Internacional</a></li>
+                        <li><a href="#">Internacionalización en Casa</a></li>
+                        <li><a href="#">Postulaciones</a></li>
+                        <li><a href="#">Reportes</a></li>
+                        <li><a href="#">Administración</a></li>
+                    </ul>
+                </nav>
+            </aside>
+
+            <!-- CONTENIDO PRINCIPAL -->
+            <main class="main">
+                <section class="modulo">
+                    <!-- 1. Título y descripción -->
+                    <section class="modulo-header">
+                        <h2>Módulo de Gestió Administrativa</h2>
+                        <p>Administra procesos de usuarios, entidades .....................</p>
+                    </section>
+
+                    <!-- 2. Menú moderno tipo pestañas -->
+                    <nav class="modulo-tabs">
+                        <button class="tab active">Registrar Entidad Enterna</button>
+                        <button class="tab active">Gestionar Entidad Enterna</button>
+                        <button class="tab">Registrar Empleados</button>
+                        <button class="tab">Registrar Estudiantes</button>
+                        <button class="tab">Gestionar de Entidad</button>
+                        <button class="tab">Reportes .....</button>
+
+                    </nav>
+
+                    <!-- 3. Contenido centrado -->
+                    <!-- Contenedores de cada pestaña -->
+                    <section class="modulo-contenido">
+
+
+
+                        <!-- Registrar Entidad Enterna -->
+                        <div class="tab-content active" data-tab="0">
+
+                            <!-- Barra de progreso -->
+                            <div class="progress-steps">
+                                <div class="step active"><div class="circle">1</div><span>Información General</span></div>
+                                <div class="step"><div class="circle">2</div><span>Contacto</span></div>
+                                <div class="step"><div class="circle">3</div><span>Académica</span></div>
+                                <div class="step"><div class="circle">4</div><span>Relación</span></div>
+                                <div class="step"><div class="circle">5</div><span>Documentos</span></div>
+                                <div class="step"><div class="circle">6</div><span>Notas Internas</span></div>
+                                <div class="step"><div class="circle">7</div><span>Estado</span></div>
+                            </div>
+
+                            <!-- Paso 1: Información General -->
+                            <form class="modulo-form wizard-form" id="entidad-step-1">
+                                <div class="form-group">
+                                    <label for="nombre_entidad">Nombre oficial de la entidad</label>
+                                    <input type="text" id="nombre_entidad" name="nombre_entidad" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="tipo_entidad">Tipo de entidad</label>
+                                    <select id="tipo_entidad" name="tipo_entidad">
+                                        <option value="">Seleccione...</option>
+                                        <option>Universidad</option>
+                                        <option>Instituto de investigación</option>
+                                        <option>ONG</option>
+                                        <option>Empresa</option>
+                                        <option>Gobierno</option>
+                                        <option>Embajada</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="pais_entidad">País</label>
+                                    <input type="text" id="pais_entidad" name="pais_entidad">
+                                </div>
+                                <div class="form-group">
+                                    <label for="ciudad_entidad">Ciudad</label>
+                                    <input type="text" id="ciudad_entidad" name="ciudad_entidad">
+                                </div>
+                                <div class="form-group" style="grid-column: span 2;">
+                                    <label for="direccion_entidad">Dirección física</label>
+                                    <input type="text" id="direccion_entidad" name="direccion_entidad">
+                                </div>
+                                <div class="form-group" style="grid-column: span 2;">
+                                    <label for="sitio_web_entidad">Sitio web oficial</label>
+                                    <input type="url" id="sitio_web_entidad" name="sitio_web_entidad">
+                                </div>
+                                <div class="wizard-actions">
+                                    <div></div>
+                                    <button type="button" class="next-step">Siguiente <i class="fas fa-arrow-right"></i></button>
+                                </div>
+                            </form>
+
+                            <!-- Paso 2: Contacto -->
+                            <form class="modulo-form wizard-form hidden" id="entidad-step-2">
+                                <div class="form-group">
+                                    <label for="contacto_nombre">Nombre del contacto principal</label>
+                                    <input type="text" id="contacto_nombre" name="contacto_nombre">
+                                </div>
+                                <div class="form-group">
+                                    <label for="contacto_cargo">Cargo o rol</label>
+                                    <input type="text" id="contacto_cargo" name="contacto_cargo">
+                                </div>
+                                <div class="form-group">
+                                    <label for="contacto_email">Correo electrónico</label>
+                                    <input type="email" id="contacto_email" name="contacto_email">
+                                </div>
+                                <div class="form-group">
+                                    <label for="contacto_telefono">Teléfono</label>
+                                    <input type="tel" id="contacto_telefono" name="contacto_telefono">
+                                </div>
+                                <div class="form-group" style="grid-column: span 2;">
+                                    <label for="unidad_contacto">Unidad o departamento</label>
+                                    <input type="text" id="unidad_contacto" name="unidad_contacto">
+                                </div>
+                                <div class="wizard-actions">
+                                    <button type="button" class="prev-step"><i class="fas fa-arrow-left"></i> Anterior</button>
+                                    <button type="button" class="next-step">Siguiente <i class="fas fa-arrow-right"></i></button>
+                                </div>
+                            </form>
+
+                            <!-- Paso 3: Académica -->
+                            <form class="modulo-form wizard-form hidden" id="entidad-step-3">
+                                <div class="form-group">
+                                    <label for="niveles_educativos">Niveles educativos que ofrece</label>
+                                    <select id="niveles_educativos" name="niveles_educativos[]" multiple>
+                                        <option>Pregrado</option>
+                                        <option>Posgrado</option>
+                                        <option>Doctorado</option>
+                                        <option>Educación continua</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="areas_academicas">Áreas académicas principales</label>
+                                    <input type="text" id="areas_academicas" name="areas_academicas">
+                                </div>
+                                <div class="form-group">
+                                    <label for="idiomas">Idiomas de instrucción</label>
+                                    <input type="text" id="idiomas" name="idiomas">
+                                </div>
+                                <div class="wizard-actions">
+                                    <button type="button" class="prev-step"><i class="fas fa-arrow-left"></i> Anterior</button>
+                                    <button type="button" class="next-step">Siguiente <i class="fas fa-arrow-right"></i></button>
+                                </div>
+                            </form>
+
+                            <!-- Paso 4: Relación -->
+                            <form class="modulo-form wizard-form hidden" id="entidad-step-4">
+                                <div class="form-group">
+                                    <label for="aliadas_previas">¿Ha tenido alianzas previas?</label>
+                                    <select id="aliadas_previas" name="aliadas_previas">
+                                        <option value="">Seleccione...</option>
+                                        <option value="si">Sí</option>
+                                        <option value="no">No</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="convenios_existentes">Convenios existentes</label>
+                                    <input type="text" id="convenios_existentes" name="convenios_existentes">
+                                </div>
+                                <div class="form-group" style="grid-column: span 2;">
+                                    <label for="colaboracion_deseada">Tipo de colaboración deseada</label>
+                                    <select id="colaboracion_deseada" name="colaboracion_deseada[]" multiple>
+                                        <option>Movilidad</option>
+                                        <option>Investigación</option>
+                                        <option>Pasantías</option>
+                                        <option>Otro</option>
+                                    </select>
+                                </div>
+                                <div class="wizard-actions">
+                                    <button type="button" class="prev-step"><i class="fas fa-arrow-left"></i> Anterior</button>
+                                    <button type="button" class="next-step">Siguiente <i class="fas fa-arrow-right"></i></button>
+                                </div>
+                            </form>
+
+                            <!-- Paso 5: Documentos adjuntos -->
+                            <form class="modulo-form wizard-form hidden" id="entidad-step-5" style="grid-template-columns: 1fr;">
+                                <div class="form-group">
+                                    <label for="catalogo">Catálogo institucional</label>
+                                    <input type="file" id="catalogo" name="catalogo">
+                                </div>
+                                <div class="form-group">
+                                    <label for="certificaciones">Certificaciones o acreditaciones</label>
+                                    <input type="file" id="certificaciones" name="certificaciones">
+                                </div>
+                                <div class="form-group">
+                                    <label for="propuesta_colaboracion">Propuesta de colaboración</label>
+                                    <input type="file" id="propuesta_colaboracion" name="propuesta_colaboracion">
+                                </div>
+                                <div class="wizard-actions">
+                                    <button type="button" class="prev-step"><i class="fas fa-arrow-left"></i> Anterior</button>
+                                    <button type="button" class="next-step">Siguiente <i class="fas fa-arrow-right"></i></button>
+                                </div>
+                            </form>
+
+                            <!-- Paso 6: Notas internas -->
+                            <form class="modulo-form wizard-form hidden" id="entidad-step-6">
+                                <div class="form-group" style="grid-column: span 2;">
+                                    <label for="observaciones_entidad">Observaciones internas</label>
+                                    <textarea id="observaciones_entidad" name="observaciones_entidad"></textarea>
+                                </div>
+                                <div class="form-group" style="grid-column: span 2;">
+                                    <label for="evaluaciones_previas">Comentarios de evaluaciones anteriores</label>
+                                    <textarea id="evaluaciones_previas" name="evaluaciones_previas"></textarea>
+                                </div>
+                                <div class="form-group" style="grid-column: span 2;">
+                                    <label for="riesgos">Riesgos o recomendaciones</label>
+                                    <textarea id="riesgos" name="riesgos"></textarea>
+                                </div>
+                                <div class="wizard-actions">
+                                    <button type="button" class="prev-step"><i class="fas fa-arrow-left"></i> Anterior</button>
+                                    <button type="button" class="next-step">Siguiente <i class="fas fa-arrow-right"></i></button>
+                                </div>
+                            </form>
+
+                            <!-- Paso 7: Estado final -->
+                            <form class="modulo-form wizard-form hidden" id="entidad-step-7">
+                                <div class="form-group">
+                                    <label for="estado_entidad">Estado actual</label>
+                                    <select id="estado_entidad" name="estado_entidad">
+                                        <option>Activa</option>
+                                        <option>Inactiva</option>
+                                        <option>En evaluación</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="fecha_registro">Fecha de registro</label>
+                                    <input type="date" id="fecha_registro" name="fecha_registro">
+                                </div>
+                                <div class="wizard-actions center-actions">
+                                    <button type="button" class="prev-step"><i class="fas fa-arrow-left"></i> Anterior</button>
+                                    <button type="submit" class="submit-btn"><i class="fas fa-save"></i> Guardar Entidad</button>
+                                </div>
+                            </form>
+
+
+
+
+
+                        </div>
+
+
+
+                        <!-- GESTIONAR ENTIDADES -->
+
+                        <div class="tab-content" data-tab="1">
+
+                            <h3>Listado de Entidades Registradas</h3>
+
+                            <div class="contenedor-entidades">
+                                <!-- Encabezado -->
+                                <div class="grid-encabezado">
+                                    <div>Nombre</div>
+                                    <div>Tipo</div>
+                                    <div>País</div>
+                                    <div>Ciudad</div>
+                                    <div>Estado</div>
+                                    <div>Acciones</div>
+                                </div>
+
+                                <!-- Cuerpo dinámico -->
+                                <div id="gridCuerpoEntidades">
+                                    <!-- Se llenará dinámicamente desde JS -->
+                                </div>
+                            </div>
+
+
+
+                        </div>
+
+
+
+
+
+
+
+
+                        <div class="tab-content" data-tab="2">
+
+                            <!-- Barra de progreso -->
+                            <div class="progress-steps">
+                                <div class="step active">
+                                    <div class="circle">1</div>
+                                    <span>Información General</span>
+                                </div>
+                                <div class="step">
+                                    <div class="circle">2</div>
+                                    <span>Datos de la Movilidad Académica</span>
+                                </div>
+                            </div>
+
+                            <!-- FORMULARIO PASO 1 -->
+                            <form class="modulo-form wizard-form" id="form-step-1">
+                                <div class="form-group">
+                                    <label for="nombre">Nombres y Apellidos</label>
+                                    <input type="text" id="nombre" name="nombre" required />
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="tipodocumento">Tipo de Identificación</label>
+                                    <select id="tipodocumento" name="tipodocumento" required>
+                                        <option value="pasaporte">Pasaporte</option>
+                                        <option value="cc" selected>C.C</option>
+                                        <option value="ce">C.E</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="documento">Número de Documento</label>
+                                    <input type="text" id="documento" name="documento" required />
+                                </div>
+                                <div class="form-group">
+                                    <label for="correo">Correo Electrónico</label>
+                                    <input type="email" id="correo" name="correo" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="telefono">Número de Contacto</label>
+                                    <input type="tel" id="telefono" name="telefono" />
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="tipovinculacion">Tipo de Vinculación UNICOLOMBO</label>
+                                    <div class="radio-group" style="display: flex; gap: 20px">
+                                        <label for="tipovinculacion1">
+                                            <input type="radio" id="tipovinculacion1" name="tipovinculacion"
+                                                   value="docente" />
+                                            Docente
+                                        </label>
+
+                                        <label for="tipovinculacion2">
+                                            <input type="radio" id="tipovinculacion2" name="tipovinculacion"
+                                                   value="administrativo" />
+                                            Administrativo
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group" style="grid-column: span 2">
+                                    <label for="programaacademico">Programa Académico</label>
+                                    <select id="programaacademico" name="programaacademico" required>
+                                        <option value="" disabled selected>
+                                            Selecciona un programa
+                                        </option>
+                                        <option value="bilinguismo">
+                                            Licenciatura en Bilingüismo con énfasis en Inglés
+                                        </option>
+                                        <option value="contaduria">Contaduría Pública</option>
+                                        <option value="administracion">
+                                            Administración de Empresas
+                                        </option>
+                                        <option value="derecho">Derecho</option>
+                                        <option value="industrial">Ingeniería Industrial</option>
+                                        <option value="sistemas">Ingeniería de Sistemas</option>
+                                        <option value="turismo">
+                                            Administración de Empresas Turísticas y Hoteleras
+                                        </option>
+                                    </select>
+                                </div>
+
+                                <div class="wizard-actions">
+                                    <div></div>
+                                    <!-- espacio a la izquierda -->
+                                    <button type="button" class="next-step">
+                                        Siguiente <i class="fas fa-arrow-right"></i>
+                                    </button>
+                                </div>
+                            </form>
+
+                            <!-- FORMULARIO PASO 2 -->
+                            <form class="modulo-form wizard-form hidden" id="form-step-2">
+                                <div class="form-group" style="grid-column: span 2">
+                                    <label for="nombre">Insititución de Destino</label>
+                                    <input type="text" id="instituciondestino" name="instituciondestino" required />
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="paisdestino">País de Destino</label>
+                                    <select id="paisdestino" name="paisdestino" required>
+                                        <option value="" disabled selected>
+                                            Cargando países...
+                                        </option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="ciudad">Ciudad</label>
+                                    <input type="text" id="ciudad" name="ciudad" placeholder="Ingresa la ciudad" required />
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="tipomovilidad">Tipo de Movilidad Académica</label>
+                                    <select id="tipomovilidad" name="tipomovilidad" required>
+                                        <option value="" disabled selected>
+                                            Selecciona un tipo de movilidad
+                                        </option>
+                                        <option value="rutaacademica">Ruta Académica</option>
+                                        <option value="voluntariado">Voluntariado</option>
+                                        <option value="estanciadeinvestigacion">
+                                            Estancia de Investigación
+                                        </option>
+                                        <option value="conferencista">Conferencista</option>
+                                        <option value="invitado">Invitado</option>
+                                        <option value="participacionenevento">
+                                            Participación en Evento
+                                        </option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="fechamovilidad">Fecha de Movilidad</label>
+                                    <input type="date" id="fechamovilidad" name="fechamovilidad" required />
+                                </div>
+
+                                <div class="form-group" style="grid-column: span 2">
+                                    <label for="titulocharla">Titulo de la charla</label>
+                                    <label for="titulocharla" style="font-weight: 80">En caso de realizar una charla indicar
+                                        el titulo</label>
+
+                                    <input type="text" id="titulocharla" name="titulocharla"
+                                           placeholder="Ingrese el titulo" />
+                                </div>
+
+                                <div class="form-group file-input-group">
+                                    <label for="firma">Subir firma</label>
+                                    <input type="file" id="firma" />
+                                </div>
+
+                                <div class="wizard-actions">
+                                    <button type="button" class="prev-step">
+                                        <i class="fas fa-arrow-left"></i> Anterior
+                                    </button>
+                                    <button type="submit" class="submit-btn">
+                                        <i class="fas fa-save"></i> Guardar
+                                    </button>
+                                </div>
+                            </form>                      
+
+
+
+
+
+                        </div>
+
+                        <div class="tab-content" data-tab="3">
+                            <!-- Igual que el paso 1 -->
+                            <div class="progress-steps">
+                                <div class="step active">
+                                    <div class="circle">1</div>
+                                    <span>Datos del Estudiante</span>
+                                </div>
+                                <div class="step">
+                                    <div class="circle">2</div>
+                                    <span>Documentos</span>
+                                </div>
+                                <div class="step">
+                                    <div class="circle">3</div>
+                                    <span>Validación</span>
+                                </div>
+                            </div>
+
+                            <form class="modulo-form wizard-form" id="entrante-step-1">
+                                <div class="form-group">
+                                    <label for="documentos_est">Documentos</label>
+                                    <input type="file" id="documentos_est" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="documentos_est">Documentos</label>
+                                    <input type="file" id="documentos_est" />
+                                </div><!-- comment -->
+                                <div class="form-group">
+                                    <label for="documentos_est">Documentos</label>
+                                    <input type="file" id="documentos_est" />
+                                </div>
+                                <div class="wizard-actions">
+                                    <div></div>
+                                    <button type="button" class="next-step">Siguiente <i class="fas fa-arrow-right"></i></button>
+                                </div>
+                            </form>
+
+
+                            <form class="modulo-form wizard-form hidden" id="entrante-step-3">
+                                <div class="form-group">
+                                    <label for="validacion_est">Observaciones</label>
+                                    <textarea id="validacion_est"></textarea>
+                                </div>
+                                <div class="wizard-actions">
+                                    <button type="button" class="prev-step"><i class="fas fa-arrow-left"></i> Anterior</button>
+                                    <button type="submit" class="submit-btn"><i class="fas fa-save"></i> Guardar</button>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="tab-content" data-tab="4">
+                            <p>Reporte de experiencia del estudiante.</p>
+                        </div>
+
+                        <!-- Pestaña 5 -->
+                        <div class="tab-content" data-tab="5">
+                            <!--cristian-->
+                            <!-- Barra de progreso -->
+                            <div class="progress-steps">
+                                <div class="step active">
+                                    <div class="circle">1</div>
+                                    <span>Datos Personales</span>
+                                </div>
+                                <div class="step">
+                                    <div class="circle">2</div>
+                                    <span>Datos Académicos</span>
+                                </div>
+                                <div class="step">
+                                    <div class="circle">3</div>
+                                    <span>Motivación</span>
+                                </div>
+                                <div class="step">
+                                    <div class="circle">4</div>
+                                    <span>Requisitos</span>
+                                </div>
+                                <div class="step">
+                                    <div class="circle">5</div>
+                                    <span>Espacio Coordinador</span>
+                                </div>
+                            </div>
+
+                            <!--FORMULARIO PASO 1-->
+                            <form class="modulo-form wizard-form" id="form-step-1">
+                                <div class="form-group">
+                                    <label for="nombre">Nombres del Estudiante</label>
+                                    <input type="text" name="nombre" id="nombre" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="apellido">Apellidos del Estudiante</label>
+                                    <input type="text" name="apellido" id="apellido" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="tipo-documento">Tipo de Documento</label>
+                                    <select name="sanguineo" id="sanguineo" required>
+                                        <option value="" disabled selected>--Seleccione una opción--</option>
+                                        <option value="cc">Cedula de ciudadania</option>
+                                        <option value="ce">Cedula de extranjeria</option>
+                                        <option value="ti">Tarjeta de identidad</option>
+                                        <option value="p">Pasaporte</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="no-documento">No. de Documento</label>
+                                    <input type="text" name="no-documento" id="no-documento" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="sexo">Sexo</label>
+                                    <input type="text" name="sexo" id="sexo" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="fecha-nacimiento">Fecha de Nacimiento</label>
+                                    <input type="date" name="fecha-nacimiento" id="fecha-nacimiento" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="lugar-nacimiento">Lugar de Nacimiento</label>
+                                    <input type="text" name="lugar-nacimiento" id="lugar-nacimiento" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="pais-nacimiento">País de Nacimiento</label>
+                                    <input type="text" name="pais-nacimiento" id="pais-nacimiento" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="sanguineo">Grupo Sanguíneo</label>
+                                    <select name="sanguineo" id="sanguineo" required>
+                                        <option value="" disabled selected>--Seleccione una opción--</option>
+                                        <option value="A">A</option>
+                                        <option value="B">B</option>
+                                        <option value="AB">AB</option>
+                                        <option value="O">O</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="factor-rh">Factor RH</label>
+                                    <select name="factor-rh" id="factor-rh" required>
+                                        <option value="" disabled selected>--Seleccione una opción--</option>
+                                        <option value="A">RH+</option>
+                                        <option value="B">RH-</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="eps">EPS</label>
+                                    <input type="text" name="eps" id="eps" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="direccion">Dirección</label>
+                                    <input type="text" name="direccion" id="direccion" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="ciudad">Ciudad/Municipio</label>
+                                    <input type="text" name="ciudad" id="ciudad" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="telefono">Teléfono</label>
+                                    <input type="tel" name="telefono" id="telefono" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="celular">Celular</label>
+                                    <input type="tel" name="celular" id="celular" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email-inst">E-mail Institucional</label>
+                                    <input type="text" name="email-inst" id="email-inst" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email-per">E-mail Personal</label>
+                                    <input type="text" name="email-per" id="email-per" required>
+                                </div>
+
+                                <div class="wizard-actions">
+                                    <div></div>
+                                    <div></div>
+                                    <button type="button" class="next-step">
+                                        Siguiente <i class="fas fa-arrow-right"></i>
+                                    </button>
+                                </div>
+                            </form>
+
+                            <!--FORMULARIO PASO 2-->
+                            <form class="modulo-form wizard-form hidden" id="form-step-2">
+                                <div class="form-group">
+                                    <label for="programa">Programa Académico</label>
+                                    <input type="text" name="programa" id="programa" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="semestre">Semestre</label>
+                                    <input type="text" name="semestre" id="semestre" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="programa">Promedio Acumulado</label>
+                                    <input type="number" name="programa" id="programa" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="codigo-est">Código Estudiantil</label>
+                                    <input type="text" name="codigo-est" id="codigo-est" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="idiomas">Idiomas que Maneja</label>
+                                    <input type="text" name="idiomas" id="idiomas" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="nivel-idioma">Nivel de Idioma</label>
+                                    <select name="nivel-idioma" id="nivel-idioma" required>
+                                        <option value="" disabled selected>--Seleccione una opción--</option>
+                                        <option value="A1">A1</option>
+                                        <option value="A2">A2</option>
+                                        <option value="B1">B1</option>
+                                        <option value="B2">B2</option>
+                                        <option value="C1">C1</option>
+                                        <option value="C2">C2</option>
+                                    </select>
+                                </div>
+
+                                <div class="wizard-actions">
+                                    <button type="button" class="prev-step">
+                                        <i class="fas fa-arrow-left"></i> Anterior
+                                    </button>
+                                    <button type="button" class="next-step">
+                                        Siguiente <i class="fas fa-arrow-right"></i>
+                                    </button>
+                                </div>
+                            </form>
+
+                            <!--FORMULARIO PASO 3-->
+                            <form class="modulo-form wizard-form hidden" id="form-step-3"
+                                  style="grid-template-columns: 1fr 1fr;">
+                                <div class="form-group" style="grid-column: span 2;">
+                                    <label for="motivacion">Motivación del Estudiante</label>
+                                    <textarea name="motivacion" id="motivacion" rows="5" cols="40"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="uni-origen">Universidad de Origen</label>
+                                    <input type="text" name="uni-origen" id="uni-origen" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="sede">Sede</label>
+                                    <input type="text" name="sede" id="sede" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="tmovilidad">Tipo de Movilidad</label>
+                                    <select name="factor-rh" id="factor-rh" required>
+                                        <option value="" disabled selected>--Seleccione una opción--</option>
+                                        <option value="intercambio">Intercambio Académico</option>
+                                        <option value="pasantia">Pasantía de Investigación</option>
+                                        <option value="practica">Práctica Profesional</option>
+                                        <option value="voluntariado">Voluntariado</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="uni-origen">Universidad de Origen</label>
+                                    <input type="text" name="uni-origen" id="uni-origen" required>
+                                </div>
+                                <div class="form-group" id="tabla">
+
+                                    <div id="cabecera-tabla">
+                                        <label>Asignaturas en la Universidad Anfitriona</label>
+                                        <label>Asignaturas en la Universidad Origen</label>
+                                    </div>
+                                    <div id="columna-tabla">
+                                        <label>Código</label>
+                                        <label>Nombre</label>
+                                        <label>Código</label>
+                                        <label>Nombre</label>
+                                    </div>
+                                    <div id="data-tabla">
+                                        <div id="fila-tabla">
+                                            <input type="number" name="codigo-anfi" id="codigo-anfi" required>
+                                            <input type="text" name="nombre-anfi" id="nombre-anfi" required>
+                                            <input type="number" name="codigo-orig" id="codigo-orig" required>
+                                            <input type="text" name="nombre-orig" id="nombre-orig" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="botones-tabla">
+                                        <button class="boton-tabla" type="button" onclick="insertarFila()">Agregar</button>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="coor-relaciones">Coordinador de Relaciones Interinstitucionales</label>
+                                    <input type="text" name="coor-relaciones" id="coor-relaciones" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="firma-relaciones">Firma</label>
+                                    <input type="file" name="firma-relaciones" id="firma-relaciones" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="coor-programa">Coordinador de Programa</label>
+                                    <input type="text" name="coor-programa" id="coor-programa" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="firma-programa">Firma</label>
+                                    <input type="file" name="firma-programa" id="firma-programa" required>
+                                </div>
+
+                                <div class="wizard-actions" style="grid-column: span 2;">
+                                    <button type="button" class="prev-step">
+                                        <i class="fas fa-arrow-left"></i> Anterior
+                                    </button>
+                                    <button type="button" class="next-step">
+                                        Siguiente <i class="fas fa-arrow-right"></i>
+                                    </button>
+                                </div>
+                            </form>
+
+                            <!--FORMULARIO PASO 4-->
+                            <form class="modulo-form wizard-form hidden" id="form-step-4"
+                                  style="grid-template-columns: 1fr;">
+                                <div class="form-group requisito">
+                                    <input type="checkbox" name="matricula-r" id="matricula-r" required>
+                                    <p>Estar matriculado en un programa de pregrado de Unicolombo y ser estudiante acitvo.
+                                    </p>
+                                </div>
+                                <div class="form-group requisito">
+                                    <input type="checkbox" name="creditos-r" id="creditos-r" required>
+                                    <p>Haber realizado como mínimo el 40% de los créditos y no estar bajo sanción
+                                        disciplinaria.</p>
+                                </div>
+                                <div class="form-group requisito">
+                                    <input type="checkbox" name="matricula-r" id="matricula-r" required>
+                                    <p>Tener un promedio acumulado de 3.5 o superior.</p>
+                                </div>
+                                <div class="form-group requisito">
+                                    <input type="checkbox" name="matricula-r" id="matricula-r" required>
+                                    <p>Asumir los costos de desplazamiento y sostenimiento durante su estancia en la
+                                        universidad anfitriona.</p>
+                                </div>
+                                <div class="form-group">
+                                    <p><strong>ANEXAR AL FORMULARIO: </strong> Fotocopia del documento de identificación,
+                                        certificado de estado ACTIVO de EPS o seguro médico internacional, formato
+                                        compromiso
+                                        de estudiantes y padres de familia para movilidad académica.</p>
+                                </div>
+                                <div class="form-group">
+                                    <label for="fotocopia">Fotocopia del documento de identidad</label>
+                                    <input type="file" name="fotocopia" id="fotocopia" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="certificado-eps">Certificado de EPS</label>
+                                    <input type="file" name="certificado-eps" id="certificado-eps" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="formato">Formato de Compromiso de Movilidad</label>
+                                    <input type="file" name="formato" id="formato" required>
+                                </div>
+                                <div class="form-group requisito">
+                                    <input type="checkbox" name="cumplimiento" id="cumplimiento" required>
+                                    <p>EL PARTICIPANTE CERTIFICA QUE CONOCE Y CUMPLE LOS REQUISITOS DEL CONVENIO
+                                        Y QUE SE CIÑE AL REGLAMENTO DE LA UNIVERSIDAD ANFITRIONA Y DE UNICOLOMBO.</p>
+                                </div>
+                                <div class="form-group">
+                                    <label for="firma-participante">Firma del Participante</label>
+                                    <input type="file" name="firma-participante" id="firma-participante">
+                                </div>
+
+                                <div class="wizard-actions" style="grid-column: span 1;">
+                                    <button type="button" class="prev-step">
+                                        <i class="fas fa-arrow-left"></i> Anterior
+                                    </button>
+                                    <button type="button" class="next-step">
+                                        Siguiente <i class="fas fa-arrow-right"></i>
+                                    </button>
+                                </div>
+                            </form>
+
+                            <!--FORMULARIO PASO 5-->
+                            <form class="modulo-form wizard-form hidden" id="form-step-5" style="grid-template-columns: 1fr 1fr;">
+                                <div class="form-group opcion">
+                                    <label for="aceptar-rechazar">Aceptada</label>
+                                    <input type="radio" name="aceptar-rechazar" id="aceptar-rechazar">
+                                </div>
+                                <div class="form-group opcion">
+                                    <label for="aceptar-rechazar">Rechazada</label>
+                                    <input type="radio" name="aceptar-rechazar" id="aceptar-rechazar">
+                                </div>
+                                <div class="form-group" style="grid-column: span 2;">
+                                    <label for="observacion">Observaciones</label>
+                                    <textarea name="observacion" id="observacion" rows="5" cols="40"></textarea>
+                                </div>
+
+                                <div class="wizard-actions">
+                                    <button type="button" class="prev-step">
+                                        <i class="fas fa-arrow-left"></i> Anterior
+                                    </button>
+                                    <button type="button" class="submit-btn">
+                                        <i class="fas fa-save"></i> Guardar
+                                    </button>
+                                </div>
+                            </form>
+
+
+
+                        </div>
+
+                        <div class="tab-content" data-tab="6">
+
+
+                            <!-- Barra de progreso -->
+                            <div class="progress-steps">
+                                <div class="step active">
+                                    <div class="circle">1</div>
+                                    <span>Datos Personales</span>
+                                </div>
+                                <div class="step">
+                                    <div class="circle">2</div>
+                                    <span>Datos de la movilidad académica</span>
+                                </div>
+                            </div>
+
+                            <!-- FORMULARIO PASO 1 -->
+                            <form class="modulo-form wizard-form" id="form-step-1">
+                                <div class="form-group">
+                                    <label for="nombre">Nombre:</label>
+                                    <input type="text" id="nombre" name="nombre" required />
+                                </div>
+                                <div class="form-group">
+                                    <label for="Apellido">Apellidos:</label>
+                                    <input type="text" id="Apellido" name="Apellido" required />
+                                </div>
+                                <div class="form-group">
+                                    <label for="correo">Tipo de documento de identidad</label>
+                                    <select class="tipoidentidad">
+                                        <option value="cc" selected>C.C</option>
+                                        <option value="ce">C.E</option>
+                                        <option value="pasaporte">Pasaporte</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="numerodocumento">Numero de documento:</label>
+                                    <input type="text" id="numeroidentidad" required />
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="sexo">Sexo:</label>
+                                    <select class="sexo">
+                                        <option value="masculino">Masculino</option>
+                                        <option value="femenino"> Femenino</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="lugarnacimiento">Lugar de nacimiento</label>
+                                    <input type="text" id="lugarnacimiento" required />
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="paisnacimiento">País de nacimiento</label>
+                                    <input type="text" id="paisnacimiento" required />
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="celular"> Celular:</label>
+                                    <input type="tel" id="telefono" required />
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="email">E-mail:</label>
+                                    <input type="email" id="email" name="email" />
+                                </div>
+
+                                <div class="wizard-actions">
+                                    <div></div> <!-- espacio a la izquierda -->
+                                    <button type="button" class="next-step">
+                                        Siguiente <i class="fas fa-arrow-right"></i>
+                                    </button>
+                                </div>
+                            </form>
+
+                            <!-- FORMULARIO PASO 2 -->
+                            <form class="modulo-form wizard-form hidden" id="form-step-2">
+                                <div class="form-group">
+                                    <label for="instituciónorigen">Institución de origen: </label>
+                                    <input type="text" id="institucion" name="institucion" required/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="paisorigen">País de origen: </label>
+                                    <input type="text" id="paisorigen" name="paisorigen" required/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="tipovinculacion">Tipo de vinculación institución de origen: </label>
+                                    <select class="tipovinculacion">
+                                        <option value="docente" selected>Docente</option>
+                                        <option value="administrativo">Administrativo</option>
+                                        <option value="investigador">Investigador</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="cargo">Cargo</label>
+                                    <input type="text" id="cargo" name="cargo" required/>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="tipomovilidad">Tipo de movilidad académica:</label>
+                                    <input type="text" id="tipomovilidad" name="tipomovilidad" required/>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="revisioncooperacion">Revisión Cooperación Académica</label>
+                                    <select class="revisioncooperacion">
+                                        <option value="estancia" selected>Estancia de Investigación </option>
+                                        <option value="conferencista">Conferencista Invitado</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="descripcionmovilidad">Descripción de la movilidad académica:</label>
+                                    <input type="text" id="descripcionmovilidad" name="descripcionmovilidad" required/>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="fechasestancia">Fechas de estancia en Unicolombo</label>
+                                    <input type="text" id="fechasestancia" name="fechasestancia" required/>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="titulocharla"> En caso de realizar una charla, indicar el titulo de esta: </label>
+                                    <input type="text" id="titulocharla" name="titulocharla" required/>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="programaacademico">Programa Académico(s) que recibirán la actividad: </label>
+                                    <input type="text" id="programaacademico" name="programaacademico" required/>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="firma"> Firma: </label>
+                                    <input type="file" id="firma" name="firma" required/>
+                                </div>
+                                <div class="wizard-actions">
+                                    <button type="button" class="prev-step">
+                                        <i class="fas fa-arrow-left"></i> Anterior
+                                    </button>
+                                    <button type="submit" class="submit-btn">
+                                        <i class="fas fa-save"></i> Guardar
+                                    </button>
+                                </div>
+
+                            </form>
+
+
+
+                        </div>
+
+                    </section>
+
+                </section>
+
+            </main>
+
+
+
+            <!-- PIE DE PÁGINA -->
+            <footer class="footer">
+                <p>&copy; 2025 Unicolombo - Oficina de Internacionalización</p>
+            </footer>
+
+        </div>
+
+        <div id="modalEntidad" class="modal hidden">
+            <div class="modal-contenido">
+                <h3>Detalles de la Entidad</h3>
+                <form id="formEntidad">
+                    <div class="form-group">
+                        <label for="modal_nombre">Nombre oficial</label>
+                        <input type="text" id="modal_nombre" name="modal_nombre" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="modal_tipo">Tipo de entidad</label>
+                        <input type="text" id="modal_tipo" name="modal_tipo">
+                    </div>
+                    <div class="form-group">
+                        <label for="modal_pais">País</label>
+                        <input type="text" id="modal_pais" name="modal_pais">
+                    </div>
+                    <div class="form-group">
+                        <label for="modal_ciudad">Ciudad</label>
+                        <input type="text" id="modal_ciudad" name="modal_ciudad">
+                    </div>
+                    <div class="form-group">
+                        <label for="modal_estado">Estado</label>
+                        <select id="modal_estado" name="modal_estado">
+                            <option value="activa">Activa</option>
+                            <option value="inactiva">Inactiva</option>
+                            <option value="evaluacion">En evaluación</option>
+                        </select>
+                    </div>
+
+                    <div class="wizard-actions">
+                        <button type="button" onclick="cerrarModal()">Cancelar</button>
+                        <button type="submit">Actualizar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Modal confirmación eliminación -->
+        <div id="modalConfirmacion" class="modal hidden">
+            <div class="modal-contenido">
+                <p>¿Está seguro de que desea eliminar esta entidad?</p>
+                <div class="wizard-actions">
+                    <button onclick="cerrarModalConfirmacion()">Cancelar</button>
+                    <button onclick="confirmarEliminacion()">Eliminar</button>
+                </div>
+            </div>
+        </div>
+
+    </body>
+
+    <script>
+        const entidades = [
+            {id: 1, nombre: "Universidad de X", tipo: "Universidad", pais: "Colombia", ciudad: "Bogotá", estado: "Activa"},
+            {id: 2, nombre: "Instituto Y", tipo: "Instituto", pais: "México", ciudad: "Monterrey", estado: "En evaluación"}
+        ];
+        let entidadSeleccionada = null;
+
+        function cargarEntidades() {
+            const cuerpo = document.getElementById("gridCuerpoEntidades");
+            cuerpo.innerHTML = "";
+
+            entidades.forEach(ent => {
+                const fila = document.createElement("div");
+                fila.className = "grid-fila";
+                        fila.innerHTML = `
+              <div>${ent.nombre}</div>
+              <div>${ent.tipo}</div>
+              <div>${ent.pais}</div>
+              <div>${ent.ciudad}</div>
+              <div>${ent.estado}</div>
+              <div>
+                <i class='fas fa-eye' title='Ver / Editar' onclick='abrirModal(${ent.id})'></i>
+                <i class='fas fa-trash' title='Eliminar' onclick='abrirModalConfirmacion(${ent.id})'></i>
+              </div>
+            `;
+                cuerpo.appendChild(fila);
+            });
+        }
+
+
+        function abrirModal(id) {
+            entidadSeleccionada = entidades.find(e => e.id === id);
+            if (!entidadSeleccionada)
+                return;
+            document.getElementById("modal_nombre").value = entidadSeleccionada.nombre;
+            document.getElementById("modal_tipo").value = entidadSeleccionada.tipo;
+            document.getElementById("modal_pais").value = entidadSeleccionada.pais;
+            document.getElementById("modal_ciudad").value = entidadSeleccionada.ciudad;
+            document.getElementById("modal_estado").value = entidadSeleccionada.estado.toLowerCase();
+            document.getElementById("modalEntidad").classList.remove("hidden");
+        }
+
+        function cerrarModal() {
+            document.getElementById("modalEntidad").classList.add("hidden");
+            entidadSeleccionada = null;
+        }
+
+        function abrirModalConfirmacion(id) {
+            entidadSeleccionada = entidades.find(e => e.id === id);
+            if (entidadSeleccionada)
+                document.getElementById("modalConfirmacion").classList.remove("hidden");
+        }
+
+        function cerrarModalConfirmacion() {
+            document.getElementById("modalConfirmacion").classList.add("hidden");
+            entidadSeleccionada = null;
+        }
+
+        function confirmarEliminacion() {
+            if (entidadSeleccionada) {
+                const index = entidades.findIndex(e => e.id === entidadSeleccionada.id);
+                if (index > -1)
+                    entidades.splice(index, 1);
+                cargarEntidades();
+                cerrarModalConfirmacion();
+            }
+        }
+
+        document.getElementById("formEntidad").addEventListener("submit", function (e) {
+            e.preventDefault();
+            if (entidadSeleccionada) {
+                entidadSeleccionada.nombre = document.getElementById("modal_nombre").value;
+                entidadSeleccionada.tipo = document.getElementById("modal_tipo").value;
+                entidadSeleccionada.pais = document.getElementById("modal_pais").value;
+                entidadSeleccionada.ciudad = document.getElementById("modal_ciudad").value;
+                entidadSeleccionada.estado = document.getElementById("modal_estado").value;
+                cargarEntidades();
+                cerrarModal();
+            }
+        });
+
+        document.addEventListener("DOMContentLoaded", cargarEntidades);
+    </script>
+</html>
