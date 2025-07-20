@@ -25,6 +25,8 @@ function insertarFilaE(){
 
 }
 
+
+
 document.addEventListener("DOMContentLoaded", () => {
 
     
@@ -46,6 +48,32 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   });
+
+
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+
+document.getElementById('btnEspecial').addEventListener("click", () =>{
+
+  const tablaY = document.querySelector('.tabla-movilidad');
+
+  if(tablaY){
+
+      tablaY.style.display = 'grid';
+
+  }
+});
+
+document.getElementById('btnEspecialBack').addEventListener("click", () =>{
+  
+  const tablaY = document.querySelector('.tabla-movilidad');
+
+  if(tablaY){
+    tablaY.style.display = 'none';
+  }
+
+});
 
 
 });

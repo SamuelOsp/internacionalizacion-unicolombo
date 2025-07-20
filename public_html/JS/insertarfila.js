@@ -1,6 +1,6 @@
 function insertarFilaY() {
-    const formulario = document.querySelector("form.tabla-movilidad");
-    const tabla = formulario.querySelector(".tabla");
+    const formulario = document.querySelector(".filasY");
+
 
     const campos = [
       { type: 'text', name: 'No' },
@@ -24,6 +24,6 @@ function insertarFilaY() {
       input.type = campo.type;
       input.name = campo.name + "[]";
       input.className = 'celda';
-      tabla.appendChild(input);
+      formulario.appendChild(input);
     });
   }

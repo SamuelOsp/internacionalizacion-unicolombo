@@ -32,7 +32,7 @@
             const tabSections = document.querySelectorAll('.tab-content');
 
             tabSections.forEach(tabSection => {
-                const forms = Array.from(tabSection.querySelectorAll('form.wizard-form'));
+                const forms = Array.from(tabSection.querySelectorAll('form.wizard-form'));              
                 const steps = Array.from(tabSection.querySelectorAll('.progress-steps .step'));
 
                 forms.forEach((form, index) => {
@@ -1022,6 +1022,7 @@
 
                         <!-- FORMULARIO PASO 1 -->
                         <form class="modulo-form wizard-form" id="form-step-1">
+
                             <div class="form-group">
                                 <label for="programa">Programa</label>
                                 <select id="programa" name="programa" required>
@@ -1087,7 +1088,7 @@
                             <div class="wizard-actions">
                                 <div></div>
                                 <!-- espacio a la izquierda -->
-                                <button type="button" class="next-step">
+                                <button type="button" class="next-step" id="btnEspecial">
                                     Siguiente <i class="fas fa-arrow-right"></i>
                                 </button>
                             </div>
@@ -1097,30 +1098,31 @@
                         <!-- FORMULARIO PASO 2 -->
 
 
-                        <form class="modulo-form wizard-form tabla-movilidad hidden" id="form-step-2"
-                            style="grid-template-columns: 1fr">
+                        <form class="modulo-form wizard-form hidden tabla-movilidad" id="form-step-2">
 
 
 
-                            <div class="tabla-responsive">
-                                <div class="tabla" id="tabla">
-                                    <!-- Fila encabezado -->
-                                    <div class="encabezado">No°</div>
-                                    <div class="encabezado">Nombre</div>
-                                    <div class="encabezado">Apellido</div>
-                                    <div class="encabezado">N° ID</div>
-                                    <div class="encabezado">N° pasaporte (si aplica)</div>
-                                    <div class="encabezado">Fecha de Nacimiento</div>
-                                    <div class="encabezado">Aporta copia ID</div>
-                                    <div class="encabezado">Compromiso estudiante/padres</div>
-                                    <div class="encabezado">Certificado EPS</div>
-                                    <div class="encabezado">Seguro internacional</div>
-                                    <div class="encabezado">Póliza estudiantil</div>
-                                    <div class="encabezado">Prueba embarazo</div>
-                                    <div class="encabezado">Teléfono</div>
-                                    <div class="encabezado">Email</div>
+                                    <div class="encabezadoY">
+
+                                    <div class="encabezado2">No°</div>
+                                    <div class="encabezado2">Nombre</div>
+                                    <div class="encabezado2">Apellido</div>
+                                    <div class="encabezado2">N° ID</div>
+                                    <div class="encabezado2">N° pasaporte (si aplica)</div>
+                                    <div class="encabezado2">Fecha de Nacimiento</div>
+                                    <div class="encabezado2">Aporta copia ID</div>
+                                    <div class="encabezado2">Compromiso estudiante/padres</div>
+                                    <div class="encabezado2">Certificado EPS</div>
+                                    <div class="encabezado2">Seguro internacional</div>
+                                    <div class="encabezado2">Póliza estudiantil</div>
+                                    <div class="encabezado2">Prueba embarazo</div>
+                                    <div class="encabezado2">Teléfono</div>
+                                    <div class="encabezado2">Email</div>
+
+                                    </div>
 
                                     <!-- Fila de inputs -->
+                                    <div class="filasY">
                                     <input type="text" class="celda" name="No" />
                                     <input type="text" class="celda" name="Nombre" />
                                     <input type="text" class="celda" name="Apellido" />
@@ -1136,21 +1138,21 @@
                                     <input type="text" class="celda" name="Telefono" />
                                     <input type="text" class="celda" name="Email" />
                                     </div>
-                                </div>
-                                <div class="wizard-actions">
-                                    <button type="button" class="prev-step">
+
+                                    <div class="wizard-actions" id="ultimo">
+                                    <button type="button" class="prev-step" id="btnEspecialBack">
                                         <i class="fas fa-arrow-left"></i> Anterior
                                     </button>
 
-                                    <button type="button" class="prev-step" onclick="insertarFilaY()">Añadir
+                                    <button type="button" class="añadir" onclick="insertarFilaY()">Añadir
                                         fila</button>
 
 
                                     <button type="submit" class="submit-btn">
                                         <i class="fas fa-save"></i> Guardar
                                     </button>
-                                </div>
-                            </div>
+                                    </div>
+
                         </form>
 
                     </div>
